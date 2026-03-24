@@ -8,12 +8,15 @@
 module cache_secure(
     input clk,
     input rst,
-    // Request interface (from CPU)
+    // Read interface (from CPU load)
     input                       req_valid,
     input  [`MEMD_SIZE_LOG-1:0] req_addr,
-    // Response interface (to CPU)
     output [`REG_LEN-1:0]       resp_data,
-    output                      resp_delayed
+    output                      resp_delayed,
+    // Write interface (from CPU store at commit)
+    input                       wr_valid,
+    input  [`MEMD_SIZE_LOG-1:0] wr_addr,
+    input  [`REG_LEN-1:0]       wr_data
 );
 
     // Internal storage (initialized by TCL abstract/assume)
@@ -24,6 +27,9 @@ module cache_secure(
         if (rst) begin
             for (i = 0; i < `MEMD_SIZE; i = i + 1)
                 mem[i] <= 0;
+        end
+        else if (wr_valid) begin
+            mem[wr_addr] <= wr_data;
         end
     end
 

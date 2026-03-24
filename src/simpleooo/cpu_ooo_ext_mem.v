@@ -13,12 +13,16 @@
 module cpu_ooo_ext_mem(
   input clk,
   input rst,
-  // External dmem interface
+  // External dmem read interface
   output                      dmem_req_valid,
   output [`MEMD_SIZE_LOG-1:0] dmem_req_addr,
   input  [`REG_LEN-1:0]       dmem_resp_data,
   // External timing control (PTCI can delay load completion)
-  input                       dmem_resp_delayed
+  input                       dmem_resp_delayed,
+  // External dmem write interface (store at commit)
+  output                      dmem_wr_valid,
+  output [`MEMD_SIZE_LOG-1:0] dmem_wr_addr,
+  output [`REG_LEN-1:0]       dmem_wr_data
 );
 
   // STEP: PC
@@ -701,6 +705,10 @@ else if (`OBSV==`OBSV_EVERY_ADDR)
 
 
   // memd removed: now uses external dmem interface
+  // Store writes to external memory at commit time
+  assign dmem_wr_valid = C_valid && C_mem_valid && (C_mem_rdwt == 0);  // rdwt==0 means store
+  assign dmem_wr_addr  = C_mem_addr;
+  assign dmem_wr_data  = C_mem_data;
 
 
 

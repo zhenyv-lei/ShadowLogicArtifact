@@ -192,91 +192,164 @@ wire resp_valid_copy2 = allow_gnt_diff ? unconstrained : shared;
 
 ### 3.1 实验总体目标
 
-证明 **仅验证 CPU 隔离环境下的安全性是不够的**。当 CPU 集成到有 cache 等外部设备的 SoC 平台后，原本被证明安全的防御机制可能不再安全。
+1. 证明 **仅验证 CPU 隔离环境下的安全性是不够的**
+2. 展示 **Soccontract 双向合同框架** 能发现问题、定位问题、指导修复
+3. 实现 CPU 和平台的 **解耦验证**
 
-### 3.2 核心实验：NoFwd_spectre + CT + Cache
+### 3.2 合约层级定义
 
-#### 实验背景
+| 合约 | 允许的信息流 | 对应平台 | 新增（相比上一级） |
+|------|------------|---------|------------------|
+| **C1** | req→◇{gnt,rdata}, addr→◇{rdata}, wdata→◇{rdata} | 理想内存 | （基准） |
+| **C2** | +addr→◇{gnt,rdata}, +we→◇{gnt,rdata} | + Cache | addr 可影响 gnt |
+| **C3** | +wdata→◇{gnt,rdata,int} | + 中断控制器 | wdata 可影响 gnt 和 int |
 
-ShadowLogic 论文在 SimpleOoO 处理器上评估了多种推测执行防御机制。其中 **NoFwd_spectre** 防御的逻辑是：当 ROB 中有未决分支时，推测执行的 load 指令仍然发射执行，但其结果数据**不转发**给后续指令。
+C1 最强（对平台要求最高），C3 最弱（允许最多信息流）。满足 C1 的平台一定满足 C2，反之不然。
 
-ShadowLogic 论文使用 `OBSV_EVERY_ADDR` 观测模型（观测所有 load 地址，包括推测执行的），在该模型下 NoFwd_spectre + CT 会被找到攻击（0.1s CEX）。
+### 3.3 验证术语
 
-我们采用更现实的 `OBSV_COMMITTED_ADDR` 观测模型（只观测 committed 指令的地址），这对应真实攻击场景——攻击者无法直接窥探 CPU 内部的推测执行地址，只能通过时序侧信道间接推断。
+| 术语 | 含义 | 验证方法 |
+|------|------|---------|
+| **CPU_C1** | CPU 在 C1 平台假设下是否安全 | CPU miter + C1 PTCI（only sticky_req → allow_gnt_diff） |
+| **CPU_C2** | CPU 在 C2 平台假设下是否安全 | CPU miter + C2 PTCI（sticky_req\|sticky_addr → allow_gnt_diff） |
+| **CPU_C3** | CPU 在 C3 平台假设下是否安全 | CPU miter + C3 PTCI（+sticky_wdata → allow_gnt_diff, allow_int_diff） |
+| **Platform_C1** | 平台是否满足 C1 合约 | Platform miter，检查 addr→gnt 不存在 |
+| **Platform_C2** | 平台是否满足 C2 合约 | Platform miter，检查 wdata→gnt 不存在 |
+| **Platform_C3** | 平台是否满足 C3 合约 | Platform miter，待定义 |
 
-#### 实验配置
+### 3.4 实验背景
 
-| 参数 | Step 1 (隔离) | Step 2 (有 cache) |
-|------|-------------|------------------|
-| 处理器 | SimpleOoO | SimpleOoO |
-| 防御机制 | NoFwd_spectre (`PARTIAL_STT + PARTIAL_STT_USE_SPEC`) | 同左 |
-| 软件合约 | CT (Constant-Time) | 同左 |
-| 观测模型 | `OBSV_COMMITTED_ADDR` (OBSV=0) | 同左 |
-| 内存模型 | 内部 memd, 固定 1 周期延迟 (`USE_CACHE=0`) | 内部 cache, hit=1/miss=3 周期 (`USE_CACHE=1`) |
-| 验证引擎 | AM (unbounded proof) | Ht (bounded, 找反例) |
+**处理器：**
+- **SimpleOoO**：自制乱序处理器，支持 LI/ADD/MUL/LD/ST/BR 6 条指令，4-entry ROB
+  - NoFwd_spectre 防御：推测 load 发射但不转发数据
+  - Delay_spectre 防御：推测 load 不发射，等到 commit
+- **Sodor**：开源顺序处理器，RV32I，2 级流水线，有中断接口
 
-#### 实验结果
+**软件合约**：CT（Constant-Time），OBSV_COMMITTED_ADDR 观测模型
 
-| 实验 | 配置 | 结果 | 时间 |
-|------|------|------|------|
-| **Step 1** | NoFwd + CT + OBSV=0 + 无 cache | **Proven (安全)** | 340.77s (5.7min) |
-| **Step 2** | NoFwd + CT + OBSV=0 + 有 cache | **CEX (攻击, 18 cycles)** | 269.35s (4.5min) |
+**平台模块：**
+- Regular Cache：单条目缓存，hit=1周期/miss=3周期
+- Cache-S：固定延迟缓存，所有访问1周期
 
-#### 攻击机制分析
+### 3.5 全部实验结果
+
+#### 第一组：发现问题（SimpleOoO）
+
+| 编号 | 实验 | 结果 | 时间 | 说明 |
+|------|------|------|------|------|
+| E1 | NoFwd + 无 cache（隔离） | **Proven** | 212s | CPU 在隔离环境下安全 |
+| E2 | NoFwd **CPU_C2** | **CEX** (16 cycles) | 32.91s | PTCI 发现 cache 平台引入漏洞 |
+| E3 | NoFwd + Cache_regular（组合） | **CEX** (16 cycles) | 60.55s | 用真实 cache 确认同样的漏洞 |
+
+- E1 vs E2：PTCI 在没有 cache RTL 的情况下发现了攻击
+- E2 vs E3：PTCI 比真实 cache 更快（33s vs 61s），且结果一致
+
+#### 第二组：Soccontract CPU 侧验证（CPU_Ci）
+
+| 编号 | 处理器 | 防御 | 合约 | 结果 | 时间 |
+|------|--------|------|------|------|------|
+| E2 | SimpleOoO | NoFwd | **CPU_C2** | **CEX** | 32.91s |
+| E4 | SimpleOoO | NoFwd | **CPU_C1** | **Proven** | 652s |
+| E5 | SimpleOoO | Delay | **CPU_C1** | **Proven** | 207s |
+| E6 | SimpleOoO | Delay | **CPU_C2** | **Proven** | 8118s |
+| E7 | Sodor | — (顺序) | **CPU_C1** | **Proven** | 4.82s |
+| E8 | Sodor | — (顺序) | **CPU_C2** | **Proven** | 7.76s |
+| E9 | Sodor | — (顺序) | **CPU_C3** | 运行中 | >80min |
+
+#### 第三组：Soccontract 平台侧验证（Platform_Ci）
+
+| 编号 | 平台 | 合约 | 结果 | 时间 |
+|------|------|------|------|------|
+| E10 | Regular Cache | **Platform_C1** | **CEX** (1 cycle) | 0.08s |
+| E11 | Regular Cache | **Platform_C2** | **Proven** | 0s |
+| E12 | Cache-S | **Platform_C1** | **Proven** | 0s |
+
+#### 第四组：组合验证
+
+| 编号 | CPU | 平台 | 结果 | 时间 | 说明 |
+|------|-----|------|------|------|------|
+| E3 | NoFwd | Cache_regular | **CEX** | 60.55s | 不兼容组合 |
+| E13 | NoFwd | Cache-S | **Proven** | 207s | 修复平台侧 |
+| E14 | Delay | Cache-S | **Proven** | 185.80s | 两侧都修复 |
+| E15 | Delay | Cache_regular | 运行中 | >14min | 修复 CPU 侧 |
+
+#### CPU_Ci 汇总表
+
+| CPU | CPU_C1 | CPU_C2 | CPU_C3 |
+|-----|--------|--------|--------|
+| SimpleOoO NoFwd | **PASS** (652s) | **FAIL** (33s) | — |
+| SimpleOoO Delay | **PASS** (207s) | **PASS** (8118s) | — |
+| Sodor | **PASS** (4.82s) | **PASS** (7.76s) | 运行中 |
+
+#### Platform_Ci 汇总表
+
+| Platform | Platform_C1 | Platform_C2 |
+|----------|-------------|-------------|
+| Regular Cache | **FAIL** (0.08s) | **PASS** (0s) |
+| Cache-S | **PASS** (0s) | **PASS** (蕴含) |
+
+### 3.5 论证逻辑
+
+#### 论点 1：PTCI 能在没有平台 RTL 的情况下发现漏洞
 
 ```
-Step 1 为什么 PASS (无 cache):
-  1. 推测 load 发射，地址可能依赖秘密
-  2. 但 OBSV=0 不观测推测地址 (addr_deviation 不检查)
-  3. 内部内存固定 1 周期延迟，不管什么地址都一样
-  4. 两个 copy 的 commit 时间相同 → 无 commit_deviation
-  → PASS
+(1) NoFwd + 无 cache      → PASS  (隔离安全)
+(2) NoFwd CPU_C2           → FAIL  (PTCI 发现漏洞, 32.91s)
+(3) NoFwd + Cache_regular  → FAIL  (真实 cache 确认, 60.55s)
 
-Step 2 为什么 FAIL (有 cache):
-  1. 推测 load 发射，地址依赖秘密 (通过先前 committed load 加载的秘密值)
-  2. OBSV=0 仍然不观测推测地址
-  3. 但 cache 引入地址依赖延迟: hit=1周期, miss=3周期
-  4. 两个 copy 的推测 load 访问不同地址 → 不同的 cache hit/miss
-  5. 不同延迟 → pipeline 状态不同 → committed 指令的 commit 时间不同
-  6. commit_deviation 被触发 → assertion FAIL
-  → CEX (18 cycles 的攻击序列)
+PTCI 不需要 cache RTL，仅凭合约描述即可发现相同漏洞，且更快。
 ```
 
-#### 实验意义
-
-> **NoFwd_spectre 防御在理想内存（固定延迟）下被形式化证明安全。但当 CPU 集成到有 cache 的平台后（地址依赖延迟），推测 load 的秘密相关地址导致不同的 cache hit/miss 时序，间接泄漏了信息——即使攻击者无法直接观测推测地址。**
-
-这证明了：
-1. 仅验证 CPU 隔离安全是不够的
-2. 平台组件（cache）的时序行为可以引入新的攻击路径
-3. 需要 Platform Timing Contracts 来显式建模平台假设
-
-### 3.3 对比实验汇总
-
-| 实验 | 处理器 | 合约 | 防御 | 观测模型 | 内存 | 结果 | 时间 |
-|------|--------|------|------|---------|------|------|------|
-| 原始 CT | Sodor | CT | 无 (顺序) | OBSV=1 | Tile 内部 | **Proven** | 4.26s |
-| 原始 S-S | SimpleOoO | CT | Delay_spectre | OBSV=1 | 内部 memd | **Proven** | 343s |
-| **Step 1** | SimpleOoO | CT | NoFwd_spectre | OBSV=0 | 内部 memd (无cache) | **Proven** | 340.77s |
-| **Step 2** | SimpleOoO | CT | NoFwd_spectre | OBSV=0 | 内部 cache (hit/miss) | **CEX** | 269.35s |
-
-### 3.4 实验的论证逻辑
+#### 论点 2：Soccontract 通过合约层级定位不兼容
 
 ```
-前提: NoFwd_spectre 防御在 OBSV_COMMITTED_ADDR 下,
-      固定延迟内存环境中被证明安全 (Step 1, 5.7min proof)
-         |
-问题: 当 CPU 集成到有 cache 的平台后, 还安全吗?
-         |
-实验: 开启 SimpleOoO 内置的 cache 模型 (USE_CACHE=1)
-      cache: single-entry, hit=1 cycle, miss=3 cycles
-         |
-结果: 4.5 分钟内找到 18 周期的攻击 (Step 2, CEX)
-         |
-结论: 平台的时序特性 (cache hit/miss) 为推测执行创造了
-      新的时序侧信道, 使得原本安全的防御机制失效。
-      验证 CPU 安全性时必须考虑平台时序行为。
+CPU 侧:
+  NoFwd CPU_C2 → FAIL    "NoFwd 不满足 C2"
+  NoFwd CPU_C1 → PASS    "NoFwd 满足 C1"
+
+平台侧:
+  Regular Cache Platform_C1 → FAIL   "Regular Cache 不满足 C1"
+  Regular Cache Platform_C2 → PASS   "Regular Cache 满足 C2"
+
+匹配分析:
+  NoFwd 需要 C1 平台，Regular Cache 只满足 C2 → 不兼容！
 ```
+
+#### 论点 3：Soccontract 指导修复并实现解耦验证
+
+**方案 A：修复 CPU 侧（升级到 Delay）**
+
+```
+Delay CPU_C2 → PASS              "升级后 CPU 满足 C2"
+Regular Cache Platform_C2 → PASS  "Regular Cache 满足 C2"
+→ Delay + Regular Cache → 安全 (合约保证)
+```
+
+**方案 B：修复平台侧（替换为 Cache-S）**
+
+```
+NoFwd CPU_C1 → PASS        "NoFwd 满足 C1"
+Cache-S Platform_C1 → PASS  "Cache-S 满足 C1"
+→ NoFwd + Cache-S → 安全 (合约保证)
+补充实验确认: NoFwd + Cache-S → Proven (207s) ✓
+```
+
+**方案 C：两侧都修复**
+
+```
+Delay CPU_C2 → PASS
+Cache-S Platform_C1 → PASS (C1 蕴含 C2)
+→ Delay + Cache-S → 安全
+实验 (8) 确认: Delay + Cache-S → Proven (185.80s) ✓
+```
+
+#### 结论
+
+Soccontract 双向合同框架的价值：
+1. **发现**：无需平台 RTL 即可发现安全隐患（PTCI 比真实 cache 更快）
+2. **定位**：通过 CPU_Ci / Platform_Ci 判断问题在 CPU 侧还是平台侧
+3. **修复**：可以选择修复任一侧（方案 A/B/C），灵活性高
+4. **解耦**：CPU 和平台各自独立验证，通过合约作为接口保证组合安全
 
 ---
 
@@ -463,39 +536,65 @@ prove -all
 
 ---
 
-## 五、当前实现进展
+## 五、实验文件与结果对照
 
-### 5.1 核心实验（已完成）
+### 5.1 SimpleOoO 实验文件
 
-**SimpleOoO NoFwd_spectre + CT + OBSV_COMMITTED_ADDR：**
-- `results/veri_nofwd_ct_obsv0_nocache.tcl` -- Step 1: 无 cache → **Proven (340.77s)**
-- `results/veri_nofwd_ct_obsv0_cache.tcl` -- Step 2: 有 cache → **CEX (269.35s, 18 cycles)**
+| 编号 | RTL 顶层 | TCL 脚本 | 结果 |
+|------|---------|---------|------|
+| E1 | `simpleooo/two_copy_top_ct_ext_mem.v` | `veri_nofwd_ct_obsv0_ext_mem_no_ptci.tcl` | Proven (212s) |
+| E2 | `simpleooo/two_copy_top_ct_ptci.v` | `veri_nofwd_ct_obsv0_ptci.tcl` | CEX (32.91s) |
+| E3 | `simpleooo/two_copy_top_ct_cache_r.v` | `veri_nofwd_ct_obsv0_cache_r.tcl` | CEX (60.55s) |
+| E4 | `simpleooo/two_copy_top_ct_ptci_c1_v2.v` | `veri_nofwd_ct_obsv0_ptci_c1_v2.tcl` | Proven (652s) |
+| E5 | `simpleooo/two_copy_top_ct_ptci_c1_v2.v` | `veri_delay_ct_obsv0_ptci_c1.tcl` | Proven (207s) |
+| E6 | `simpleooo/two_copy_top_ct_ptci.v` | `veri_delay_ct_obsv0_ptci_c2.tcl` | Proven (8118s) |
+| E10 | `simpleooo/cache_miter_c2.v` | `veri_cache_compliance.tcl` (c1_regular) | CEX (0.08s) |
+| E11 | `simpleooo/cache_miter_c2.v` | `veri_cache_compliance.tcl` (c2_regular) | Proven (0s) |
+| E12 | `simpleooo/cache_miter_c2.v` | `veri_cache_compliance.tcl` (c1_secure) | Proven (0s) |
+| E13 | `simpleooo/two_copy_top_ct_cache_s.v` | `veri_nofwd_ct_obsv0_cache_s.tcl` | Proven (207s) |
+| E14 | `simpleooo/two_copy_top_ct_cache_s.v` | `veri_delay_ct_obsv0_cache_s.tcl` | Proven (185.80s) |
+| E15 | gen_verify.py 生成 | `veri_ct_2copy_..._CACHE1_PDOM_OPTMem.tcl` | 运行中 |
 
-**复现实验：**
-- `results/veri_ct_2copy_RF4_MEMI16_MEMD4_ROB4_CACHE0_PDOM_OPTMem.tcl` -- Delay_spectre + CT → **Proven (343s)**
+### 5.2 Sodor 实验文件
 
-**Sodor 基线：**
-- 原始 CT (`verification/verify_2_copy_ct_sodor2.tcl`) → **Proven (4.26s)**
+| 编号 | RTL 顶层 | TCL 脚本 | 结果 |
+|------|---------|---------|------|
+| E7 | `sodor2/two_copy_top_c1.sv` | `veri_sodor_cpu_c1.tcl` | Proven (4.82s) |
+| E8 | `sodor2/two_copy_top_c2.sv` | `veri_sodor_cpu_c2.tcl` | Proven (7.76s) |
+| E9 | `sodor2/two_copy_top_c3.sv` | `veri_sodor_cpu_c3.tcl` | 运行中 |
 
-### 5.2 早期探索（参考）
+### 5.3 核心 RTL 模块
 
-**Sodor PTCI 实验（Sodor 为顺序处理器，无推测执行，cache 不影响安全性）：**
-- `src/sodor2/two_copy_top_c1.sv` -- Core + C1 PTCI
-- `src/sodor2/two_copy_top_c2.sv` -- Core + C2 PTCI
-- `verification/verify_2_copy_c1_sodor2.tcl`, `verify_2_copy_c2_sodor2.tcl`
+**SimpleOoO 相关（`src/simpleooo/`）：**
 
-**DarkRISCV PTCI 实验：**
-- `src/darkriscv/rtl/two_copy_top_c1.sv` -- DarkRISCV + C1 PTCI
+| 文件 | 说明 |
+|------|------|
+| `cpu_ooo_ext_mem.v` | SimpleOoO CPU，暴露外部 dmem 接口（含 store 写端口） |
+| `cache_secure.v` | Cache-S，固定延迟，满足 C1 |
+| `cache_regular.v` | Regular Cache，hit/miss 时序，满足 C2 但不满足 C1 |
+| `cache_miter_c2.v` | Cache 合规性 miter 验证顶层（Platform_C1/C2） |
+| `two_copy_top_ct_ptci.v` | CPU_C2 PTCI 验证顶层（sticky_addr → allow_gnt_diff） |
+| `two_copy_top_ct_ptci_c1_v2.v` | CPU_C1 PTCI 验证顶层（sticky_req → allow_gnt_diff） |
+| `two_copy_top_ct_cache_r.v` | NoFwd + Regular Cache 组合验证 |
+| `two_copy_top_ct_cache_s.v` | CPU + Cache-S 组合验证 |
+| `two_copy_top_ct_ext_mem.v` | 无 PTCI 基线验证 |
 
-### 5.3 待实现
+**Sodor 相关（`src/sodor2/`）：**
 
-| 任务 | 优先级 | 说明 |
-|------|-------|------|
-| 分析 Step 2 的 counterexample trace | 高 | 确认攻击路径是 cache hit/miss 时序差异 |
-| 更多防御机制 + cache 对比 | 高 | 例如 Delay_spectre + cache 是否仍然 PASS |
-| RideCore + cache 实验 | 中 | 在更大的乱序处理器上验证 |
-| BOOM TileLink + PTCI | 低 | 扩展到 L2 cache 场景 |
-| 实验文档和论文写作 | 高 | 整理实验结果用于论文 |
+| 文件 | 说明 |
+|------|------|
+| `two_copy_top_c1.sv` | Sodor CPU_C1 PTCI 验证顶层 |
+| `two_copy_top_c2.sv` | Sodor CPU_C2 PTCI 验证顶层 |
+| `two_copy_top_c3.sv` | Sodor CPU_C3 PTCI 验证顶层（含中断控制） |
+
+### 5.4 后续扩展方向
+
+| 任务 | 说明 |
+|------|------|
+| Platform_C3 验证 | 需要带中断控制器的平台模块 |
+| RideCore + PTCI | 在更大的乱序超标量处理器上验证 |
+| BOOM TileLink + PTCI | 扩展到 L2 cache 场景 |
+| Counterexample 分析 | 详细分析攻击序列 |
 
 ---
 

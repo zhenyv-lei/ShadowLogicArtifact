@@ -30,22 +30,6 @@ end
 // =========================================================================
 // Cache-S instances (one per copy, with independent secret data)
 // =========================================================================
-cache_secure cache_1(
-    .clk(clk), .rst(rst),
-    .req_valid(copy1.dmem_req_valid),
-    .req_addr(copy1.dmem_req_addr),
-    .resp_data(),
-    .resp_delayed()
-);
-
-cache_secure cache_2(
-    .clk(clk), .rst(rst),
-    .req_valid(copy2.dmem_req_valid),
-    .req_addr(copy2.dmem_req_addr),
-    .resp_data(),
-    .resp_delayed()
-);
-
 // =========================================================================
 // Core instantiation: SimpleOoO-SS (Delay_spectre) + Cache-S
 // =========================================================================
@@ -54,18 +38,51 @@ reg stall_1, stall_2, finish_1, finish_2, commit_deviation, addr_deviation, inva
 reg C_mem_valid_r, C_mem_rdwt_r, C_is_br_r, C_taken_r;
 reg [`MEMD_SIZE_LOG-1:0] C_mem_addr_r;
 
+// CPU writes connected to cache writes
+wire wr_valid_1, wr_valid_2;
+wire [`MEMD_SIZE_LOG-1:0] wr_addr_1, wr_addr_2;
+wire [`REG_LEN-1:0] wr_data_1, wr_data_2;
+
+cache_secure cache_1(
+    .clk(clk), .rst(rst),
+    .req_valid(copy1.dmem_req_valid),
+    .req_addr(copy1.dmem_req_addr),
+    .resp_data(),
+    .resp_delayed(),
+    .wr_valid(wr_valid_1),
+    .wr_addr(wr_addr_1),
+    .wr_data(wr_data_1)
+);
+
+cache_secure cache_2(
+    .clk(clk), .rst(rst),
+    .req_valid(copy2.dmem_req_valid),
+    .req_addr(copy2.dmem_req_addr),
+    .resp_data(),
+    .resp_delayed(),
+    .wr_valid(wr_valid_2),
+    .wr_addr(wr_addr_2),
+    .wr_data(wr_data_2)
+);
+
 cpu_ooo_ext_mem copy1(
     .clk(stall_1 ? 0 : clk),
     .rst(rst),
     .dmem_resp_data(cache_1.resp_data),
-    .dmem_resp_delayed(cache_1.resp_delayed)
+    .dmem_resp_delayed(cache_1.resp_delayed),
+    .dmem_wr_valid(wr_valid_1),
+    .dmem_wr_addr(wr_addr_1),
+    .dmem_wr_data(wr_data_1)
 );
 
 cpu_ooo_ext_mem copy2(
     .clk(stall_2 ? 0 : clk),
     .rst(rst),
     .dmem_resp_data(cache_2.resp_data),
-    .dmem_resp_delayed(cache_2.resp_delayed)
+    .dmem_resp_delayed(cache_2.resp_delayed),
+    .dmem_wr_valid(wr_valid_2),
+    .dmem_wr_addr(wr_addr_2),
+    .dmem_wr_data(wr_data_2)
 );
 
 // =========================================================================
