@@ -166,7 +166,7 @@ assign diff_dmem_we    = copy1.io_dmem_req_bits_fcn   ^ copy2.io_dmem_req_bits_f
 assign diff_dmem_wdata = |(copy1.io_dmem_req_bits_data ^ copy2.io_dmem_req_bits_data);
 
 // =========================================================================
-// Shadow Logic (same as C2 version)
+// Shadow Logic (C3 version: distinguish program vs interrupt PC changes)
 // =========================================================================
 reg stall_1, stall_2, finish_1, finish_2, commit_deviation, addr_deviation, invalid_program;
 
@@ -182,6 +182,13 @@ wire [31:0] if_pc_next_2 = copy2.d._if_pc_next_T   ? copy2.d.if_pc_plus4   :
                             copy2.d._if_pc_next_T_1 ? copy2.d.exe_br_target :
                                                       copy2.d._if_pc_next_T_7;
 
+// C3: Distinguish program-initiated PC changes from interrupt-initiated ones
+// io_ctl_pc_sel == 3'h4 means exception/interrupt handler (platform-driven)
+// Only filter program-driven PC divergences as invalid_program
+wire pc_sel_diff = (copy1.c.io_ctl_pc_sel != copy2.c.io_ctl_pc_sel);
+wire either_is_interrupt = (copy1.c.io_ctl_pc_sel == 3'h4) || (copy2.c.io_ctl_pc_sel == 3'h4);
+wire pc_sel_diff_by_program = pc_sel_diff && !either_is_interrupt;
+
 always @(posedge clk) begin
     if (rst) begin
         stall_1          <= 0;
@@ -196,7 +203,7 @@ always @(posedge clk) begin
         if (!stall_1 && !stall_2 && copy1.d.exe_reg_valid && copy2.d.exe_reg_valid) begin
             if ((mem_valid_1 && mem_valid_2 && (copy1.d.io_dmem_req_bits_addr != copy2.d.io_dmem_req_bits_addr))
                || if_pc_next_1 != if_pc_next_2
-               || copy1.c.io_ctl_pc_sel != copy2.c.io_ctl_pc_sel)
+               || pc_sel_diff_by_program)
                 invalid_program = 1;
         end
         else if (!stall_1 && !stall_2 && copy1.d.exe_reg_valid && !copy2.d.exe_reg_valid) begin
@@ -210,14 +217,14 @@ always @(posedge clk) begin
         else if (stall_1 && !stall_2 && copy2.d.exe_reg_valid) begin
             if ((mem_valid_1 && mem_valid_2 && (copy1.d.io_dmem_req_bits_addr != copy2.d.io_dmem_req_bits_addr))
                || if_pc_next_1 != if_pc_next_2
-               || copy1.c.io_ctl_pc_sel != copy2.c.io_ctl_pc_sel)
+               || pc_sel_diff_by_program)
                 invalid_program = 1;
             stall_1 = 0;
         end
         else if (!stall_1 && stall_2 && copy1.d.exe_reg_valid) begin
             if ((mem_valid_1 && mem_valid_2 && (copy1.d.io_dmem_req_bits_addr != copy2.d.io_dmem_req_bits_addr))
                || if_pc_next_1 != if_pc_next_2
-               || copy1.c.io_ctl_pc_sel != copy2.c.io_ctl_pc_sel)
+               || pc_sel_diff_by_program)
                 invalid_program = 1;
             stall_2 = 0;
         end
