@@ -325,12 +325,12 @@ CPU 侧:
   NoFwd 需要 C1 平台，Regular Cache 只满足 C2 → 不兼容！
 ```
 
-**C2/C3 层级（Sodor + 中断控制器）：**
+**C2/C4 层级（Sodor + 中断控制器）：**
 
 ```
 CPU 侧:
-  Sodor CPU_C3 → FAIL    "Sodor 不满足 C3"
-  Sodor CPU_C2 → PASS    "Sodor 满足 C2"
+  Sodor CPU_C4 (无PMP) → FAIL    "Sodor 不满足 C4"
+  Sodor CPU_C2 → PASS             "Sodor 满足 C2"
 
 平台侧:
   中断控制器 Platform_C2 → FAIL   "中断控制器不满足 C2"
@@ -367,7 +367,22 @@ Cache-S Platform_C1 → PASS (C1 蕴含 C2)
 实验确认: Delay + Cache-S → Proven (185.80s) ✓
 ```
 
-**C2/C3 修复（Sodor + 中断控制器）：** 待实现（需要升级 Sodor 防御或替换安全中断控制器）
+**C4 修复（Sodor + 中断控制器）：**
+
+修复 CPU 侧（增加 PMP 约束）
+```
+Sodor-S CPU_C4 (PMP) → PASS     "PMP 禁止秘密写入外设地址"
+中断控制器 Platform_C3 → PASS    "满足 C3（蕴含 C4）"
+→ Sodor-S + 中断控制器 → 安全 (合约保证)
+组合实验确认: Sodor-S + 中断控制器 → Proven (1.70s) ✓
+```
+
+**E15 组合验证超时的意义：**
+```
+Delay + Regular Cache 组合验证 → Undetermined (7天超时)
+而解耦验证: Delay CPU_C2 PASS + Cache Platform_C2 PASS → 合约已保证安全
+→ 解耦验证在组合验证不可行时仍能给出安全性结论
+```
 
 #### 结论
 
