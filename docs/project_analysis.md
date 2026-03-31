@@ -308,10 +308,11 @@ E3: NoFwd + Cache_regular  → FAIL  (真实 cache 确认, 60.55s)
 PTCI 不需要 cache RTL，仅凭合约描述即可发现相同漏洞，且更快。
 ```
 
-#### 论点 2：Soccontract 通过合约层级定位不兼容
+#### 论点 2：Soccontract 通过合约层级判断兼容性
 
 **C1/C2 层级（SimpleOoO + Cache）：**
 
+不兼容示例：
 ```
 CPU 侧:
   NoFwd CPU_C2 → FAIL    "NoFwd 不满足 C2"
@@ -325,8 +326,21 @@ CPU 侧:
   NoFwd 需要 C1 平台，Regular Cache 只满足 C2 → 不兼容！
 ```
 
+兼容示例（修复 CPU 侧）：
+```
+CPU 侧:
+  Delay CPU_C2 → PASS              "Delay 满足 C2"
+
+平台侧:
+  Regular Cache Platform_C2 → PASS  "Regular Cache 满足 C2"
+
+匹配分析:
+  两方都满足 C2 → 兼容 ✓
+```
+
 **C2/C4 层级（Sodor + 中断控制器）：**
 
+不兼容示例：
 ```
 CPU 侧:
   Sodor CPU_C4 (无PMP) → FAIL    "Sodor 不满足 C4"
@@ -338,6 +352,18 @@ CPU 侧:
 
 匹配分析:
   Sodor 需要 C2 平台，中断控制器只满足 C3 → 不兼容！
+```
+
+兼容示例（修复 CPU 侧）：
+```
+CPU 侧:
+  Sodor-S CPU_C4 (PMP) → PASS     "Sodor-S 满足 C4"
+
+平台侧:
+  中断控制器 Platform_C3 → PASS    "中断控制器满足 C3（蕴含 C4）"
+
+匹配分析:
+  两方都满足 C4 层级 → 兼容 ✓
 ```
 
 #### 论点 3：Soccontract 指导修复并实现解耦验证
