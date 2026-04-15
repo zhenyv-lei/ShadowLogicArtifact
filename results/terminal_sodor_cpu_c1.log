@@ -1,0 +1,821 @@
+Jasper Apps 2025.06 FCS 64 bits 2025.06.25 13:01:28 UTC
+
+Any disclosure about the Cadence Design Systems software or its use
+model to any third party violates the written Non-Disclosure Agreement
+between Cadence Design Systems, Inc. and the customer.
+
+THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
+CADENCE DESIGN SYSTEMS, INC. USE, DISCLOSURE, OR REPRODUCTION IS
+PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF CADENCE
+DESIGN SYSTEMS, INC.
+
+Copyright (C) 2000-2025 Cadence Design Systems, Inc. All Rights
+Reserved.  Unpublished -- rights reserved under the copyright laws of
+the United States.
+
+This product includes software developed by others and redistributed
+according to license agreement. See doc/third_party_readme.txt for
+further details.
+
+RESTRICTED RIGHTS LEGEND
+
+Use, duplication, or disclosure by the Government is subject to
+restrictions as set forth in subparagraph (c) (1) (ii) of the Rights in
+Technical Data and Computer Software clause at DFARS 252.227-7013 or
+subparagraphs (c) (1) and (2) of Commercial Computer Software -- Restricted
+Rights at 48 CFR 52.227-19, as applicable.
+
+
+                          Cadence Design Systems, Inc.
+                          2655 Seely Avenue
+                          San Jose, CA 95134
+                          Phone: 408.943.1234
+
+For technical assistance visit http://support.cadence.com.
+
+Jasper Apps Analysis Session - /home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_sodor_cpu_c1/sessionLogs/session_0
+
+INFO: successfully checked out license "jasper_fao".
+INFO: reading configuration file "/home/zhenyu.lei/.config/cadence/jasper.conf".
+% # =============================================================================
+% # Sodor CPU_C1: C1 Platform Timing Contract Verification
+% # =============================================================================
+% # C1: addr does NOT affect gnt (ideal memory)
+% # Expected result: PASS (Sodor already passes C2, C1 is easier)
+% # =============================================================================
+% 
+% analyze -sva src/sodor2/sodor_2_stage.sv src/sodor2/two_copy_top_c1.sv src/sodor2/param.vh
+[-- (VERI-1482)] Analyzing Verilog file '/opt/cadence/jasper_2025.06/lib/verilog/packages/std/std.sv' into library 'std'
+[-- (VERI-1482)] Analyzing Verilog file 'src/sodor2/sodor_2_stage.sv'
+[INFO (VERI-1328)] src/sodor2/sodor_2_stage.sv(1): analyzing included file 'src/sodor2/param.vh'
+[-- (VERI-1482)] Analyzing Verilog file 'src/sodor2/two_copy_top_c1.sv'
+[INFO (VERI-1328)] src/sodor2/two_copy_top_c1.sv(1): analyzing included file 'src/sodor2/param.vh'
+[INFO (VERI-1328)] src/sodor2/two_copy_top_c1.sv(2): analyzing included file 'src/sodor2/sodor_2_stage.sv'
+[INFO (VERI-1328)] src/sodor2/sodor_2_stage.sv(1): analyzing included file 'src/sodor2/param.vh'
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(21): overwriting previous definition of module 'InterruptBusWrapper'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(21): previous definition of module 'InterruptBusWrapper' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(30): overwriting previous definition of module 'ClockGroupAggregator'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(30): previous definition of module 'ClockGroupAggregator' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(39): overwriting previous definition of module 'ClockGroup'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(39): previous definition of module 'ClockGroup' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52): overwriting previous definition of module 'FixedClockBroadcast'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52): previous definition of module 'FixedClockBroadcast' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(2780): overwriting previous definition of module 'TLMonitor'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(2780): previous definition of module 'TLMonitor' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(5746): overwriting previous definition of module 'TLMonitor_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(5746): previous definition of module 'TLMonitor_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(6183): overwriting previous definition of module 'TLXbar'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(6183): previous definition of module 'TLXbar' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(8911): overwriting previous definition of module 'TLMonitor_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(8911): previous definition of module 'TLMonitor_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(11877): overwriting previous definition of module 'TLMonitor_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(11877): previous definition of module 'TLMonitor_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12120): overwriting previous definition of module 'TLFIFOFixer'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12120): previous definition of module 'TLFIFOFixer' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12183): overwriting previous definition of module 'TLWidthWidget'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12183): previous definition of module 'TLWidthWidget' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12348): overwriting previous definition of module 'TLInterconnectCoupler'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12348): previous definition of module 'TLInterconnectCoupler' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12408): overwriting previous definition of module 'TLWidthWidget_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12408): previous definition of module 'TLWidthWidget_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12565): overwriting previous definition of module 'TLInterconnectCoupler_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12565): previous definition of module 'TLInterconnectCoupler_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(12628): overwriting previous definition of module 'TLInterconnectCoupler_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(12628): previous definition of module 'TLInterconnectCoupler_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(13488): overwriting previous definition of module 'SystemBus'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(13488): previous definition of module 'SystemBus' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(13497): overwriting previous definition of module 'ClockGroupAggregator_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(13497): previous definition of module 'ClockGroupAggregator_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(13506): overwriting previous definition of module 'ClockGroup_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(13506): previous definition of module 'ClockGroup_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(13519): overwriting previous definition of module 'FixedClockBroadcast_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(13519): previous definition of module 'FixedClockBroadcast_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(16546): overwriting previous definition of module 'TLMonitor_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(16546): previous definition of module 'TLMonitor_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(16673): overwriting previous definition of module 'TLFIFOFixer_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(16673): previous definition of module 'TLFIFOFixer_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(16736): overwriting previous definition of module 'TLXbar_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(16736): previous definition of module 'TLXbar_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(19763): overwriting previous definition of module 'TLMonitor_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(19763): previous definition of module 'TLMonitor_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(20205): overwriting previous definition of module 'TLXbar_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(20205): previous definition of module 'TLXbar_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(23261): overwriting previous definition of module 'TLMonitor_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(23261): previous definition of module 'TLMonitor_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(23555): overwriting previous definition of module 'Queue'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(23555): previous definition of module 'Queue' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(23849): overwriting previous definition of module 'Queue_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(23849): previous definition of module 'Queue_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(24092): overwriting previous definition of module 'TLBuffer_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(24092): previous definition of module 'TLBuffer_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(27151): overwriting previous definition of module 'TLMonitor_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(27151): previous definition of module 'TLMonitor_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(27807): overwriting previous definition of module 'TLAtomicAutomata'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(27807): previous definition of module 'TLAtomicAutomata' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(30866): overwriting previous definition of module 'TLMonitor_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(30866): previous definition of module 'TLMonitor_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(31109): overwriting previous definition of module 'TLBuffer_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(31109): previous definition of module 'TLBuffer_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(33535): overwriting previous definition of module 'TLMonitor_9'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(33535): previous definition of module 'TLMonitor_9' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(33680): overwriting previous definition of module 'Repeater'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(33680): previous definition of module 'Repeater' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(34043): overwriting previous definition of module 'TLFragmenter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(34043): previous definition of module 'TLFragmenter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(34094): overwriting previous definition of module 'TLBuffer_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(34094): previous definition of module 'TLBuffer_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(34317): overwriting previous definition of module 'TLInterconnectCoupler_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(34317): previous definition of module 'TLInterconnectCoupler_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(34380): overwriting previous definition of module 'TLSourceShrinker_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(34380): previous definition of module 'TLSourceShrinker_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(37427): overwriting previous definition of module 'TLMonitor_10'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(37427): previous definition of module 'TLMonitor_10' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(37580): overwriting previous definition of module 'Repeater_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(37580): previous definition of module 'Repeater_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(38038): overwriting previous definition of module 'TLWidthWidget_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(38038): previous definition of module 'TLWidthWidget_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(38313): overwriting previous definition of module 'TLInterconnectCoupler_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(38313): previous definition of module 'TLInterconnectCoupler_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(40739): overwriting previous definition of module 'TLMonitor_11'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(40739): previous definition of module 'TLMonitor_11' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(40884): overwriting previous definition of module 'Repeater_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(40884): previous definition of module 'Repeater_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(41247): overwriting previous definition of module 'TLFragmenter_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(41247): previous definition of module 'TLFragmenter_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(41388): overwriting previous definition of module 'TLInterconnectCoupler_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(41388): previous definition of module 'TLInterconnectCoupler_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(43781): overwriting previous definition of module 'TLMonitor_12'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(43781): previous definition of module 'TLMonitor_12' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(45127): overwriting previous definition of module 'PeripheryBus'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(45127): previous definition of module 'PeripheryBus' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(45136): overwriting previous definition of module 'ClockGroupAggregator_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(45136): previous definition of module 'ClockGroupAggregator_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(45145): overwriting previous definition of module 'ClockGroup_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(45145): previous definition of module 'ClockGroup_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(45205): overwriting previous definition of module 'TLXbar_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(45205): previous definition of module 'TLXbar_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(48122): overwriting previous definition of module 'TLMonitor_13'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(48122): previous definition of module 'TLMonitor_13' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(48416): overwriting previous definition of module 'Queue_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(48416): previous definition of module 'Queue_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(48710): overwriting previous definition of module 'Queue_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(48710): previous definition of module 'Queue_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(48950): overwriting previous definition of module 'TLBuffer_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(48950): previous definition of module 'TLBuffer_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(51867): overwriting previous definition of module 'TLMonitor_14'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(51867): previous definition of module 'TLMonitor_14' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52109): overwriting previous definition of module 'TLBuffer_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52109): previous definition of module 'TLBuffer_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52278): overwriting previous definition of module 'TLInterconnectCoupler_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52278): previous definition of module 'TLInterconnectCoupler_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52715): overwriting previous definition of module 'FrontBus'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52715): previous definition of module 'FrontBus' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52724): overwriting previous definition of module 'ClockGroupAggregator_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52724): previous definition of module 'ClockGroupAggregator_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52733): overwriting previous definition of module 'ClockGroup_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52733): previous definition of module 'ClockGroup_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(52758): overwriting previous definition of module 'FixedClockBroadcast_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(52758): previous definition of module 'FixedClockBroadcast_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(55711): overwriting previous definition of module 'TLMonitor_15'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(55711): previous definition of module 'TLMonitor_15' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(55838): overwriting previous definition of module 'TLFIFOFixer_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(55838): previous definition of module 'TLFIFOFixer_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(58814): overwriting previous definition of module 'TLMonitor_16'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(58814): previous definition of module 'TLMonitor_16' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(60152): overwriting previous definition of module 'TLMonitor_17'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(60152): previous definition of module 'TLMonitor_17' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(60539): overwriting previous definition of module 'TLXbar_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(60539): previous definition of module 'TLXbar_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(63492): overwriting previous definition of module 'TLMonitor_18'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(63492): previous definition of module 'TLMonitor_18' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(64361): overwriting previous definition of module 'TLXbar_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(64361): previous definition of module 'TLXbar_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(67343): overwriting previous definition of module 'TLMonitor_19'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(67343): previous definition of module 'TLMonitor_19' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(67637): overwriting previous definition of module 'Queue_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(67637): previous definition of module 'Queue_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(67931): overwriting previous definition of module 'Queue_9'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(67931): previous definition of module 'Queue_9' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(68174): overwriting previous definition of module 'TLBuffer_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(68174): previous definition of module 'TLBuffer_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(71152): overwriting previous definition of module 'TLMonitor_20'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(71152): previous definition of module 'TLMonitor_20' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(71823): overwriting previous definition of module 'TLAtomicAutomata_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(71823): previous definition of module 'TLAtomicAutomata_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(74461): overwriting previous definition of module 'TLMonitor_21'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(74461): previous definition of module 'TLMonitor_21' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(74610): overwriting previous definition of module 'Queue_10'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(74610): previous definition of module 'Queue_10' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(74829): overwriting previous definition of module 'TLError'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(74829): previous definition of module 'TLError' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(77763): overwriting previous definition of module 'TLMonitor_22'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(77763): previous definition of module 'TLMonitor_22' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78032): overwriting previous definition of module 'Queue_11'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78032): previous definition of module 'Queue_11' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78263): overwriting previous definition of module 'TLBuffer_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78263): previous definition of module 'TLBuffer_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78435): overwriting previous definition of module 'ErrorDeviceWrapper'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78435): previous definition of module 'ErrorDeviceWrapper' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78498): overwriting previous definition of module 'TLBuffer_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78498): previous definition of module 'TLBuffer_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78561): overwriting previous definition of module 'TLWidthWidget_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78561): previous definition of module 'TLWidthWidget_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(78726): overwriting previous definition of module 'TLInterconnectCoupler_9'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(78726): previous definition of module 'TLInterconnectCoupler_9' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(81181): overwriting previous definition of module 'TLMonitor_23'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(81181): previous definition of module 'TLMonitor_23' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(81326): overwriting previous definition of module 'Repeater_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(81326): previous definition of module 'Repeater_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(81689): overwriting previous definition of module 'TLFragmenter_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(81689): previous definition of module 'TLFragmenter_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(81830): overwriting previous definition of module 'TLInterconnectCoupler_10'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(81830): previous definition of module 'TLInterconnectCoupler_10' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(84256): overwriting previous definition of module 'TLMonitor_24'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(84256): previous definition of module 'TLMonitor_24' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(84401): overwriting previous definition of module 'Repeater_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(84401): previous definition of module 'Repeater_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(84764): overwriting previous definition of module 'TLFragmenter_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(84764): previous definition of module 'TLFragmenter_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(84905): overwriting previous definition of module 'TLInterconnectCoupler_11'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(84905): previous definition of module 'TLInterconnectCoupler_11' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(87330): overwriting previous definition of module 'TLMonitor_25'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(87330): previous definition of module 'TLMonitor_25' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(87475): overwriting previous definition of module 'Repeater_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(87475): previous definition of module 'Repeater_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(87838): overwriting previous definition of module 'TLFragmenter_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(87838): previous definition of module 'TLFragmenter_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(87979): overwriting previous definition of module 'TLInterconnectCoupler_12'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(87979): previous definition of module 'TLInterconnectCoupler_12' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(88039): overwriting previous definition of module 'TLWidthWidget_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(88039): previous definition of module 'TLWidthWidget_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(88196): overwriting previous definition of module 'TLInterconnectCoupler_13'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(88196): previous definition of module 'TLInterconnectCoupler_13' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(90158): overwriting previous definition of module 'TLMonitor_26'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(90158): previous definition of module 'TLMonitor_26' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(90303): overwriting previous definition of module 'Repeater_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(90303): previous definition of module 'Repeater_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(90624): overwriting previous definition of module 'TLFragmenter_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(90624): previous definition of module 'TLFragmenter_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(90749): overwriting previous definition of module 'TLInterconnectCoupler_14'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(90749): previous definition of module 'TLInterconnectCoupler_14' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(90767): overwriting previous definition of module 'TLInterconnectCoupler_15'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(90767): previous definition of module 'TLInterconnectCoupler_15' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(93775): overwriting previous definition of module 'TLMonitor_27'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(93775): previous definition of module 'TLMonitor_27' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(94069): overwriting previous definition of module 'Queue_13'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(94069): previous definition of module 'Queue_13' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(94359): overwriting previous definition of module 'Queue_14'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(94359): previous definition of module 'Queue_14' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(94586): overwriting previous definition of module 'TLBuffer_9'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(94586): previous definition of module 'TLBuffer_9' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(97627): overwriting previous definition of module 'TLMonitor_28'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(97627): previous definition of module 'TLMonitor_28' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(97772): overwriting previous definition of module 'Repeater_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(97772): previous definition of module 'Repeater_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(98159): overwriting previous definition of module 'TLFragmenter_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(98159): previous definition of module 'TLFragmenter_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(98222): overwriting previous definition of module 'TLBuffer_10'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(98222): previous definition of module 'TLBuffer_10' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(98589): overwriting previous definition of module 'TLInterconnectCoupler_16'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(98589): previous definition of module 'TLInterconnectCoupler_16' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(101597): overwriting previous definition of module 'TLMonitor_29'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(101597): previous definition of module 'TLMonitor_29' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(101824): overwriting previous definition of module 'TLBuffer_11'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(101824): previous definition of module 'TLBuffer_11' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(104865): overwriting previous definition of module 'TLMonitor_30'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(104865): previous definition of module 'TLMonitor_30' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(105252): overwriting previous definition of module 'TLFragmenter_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(105252): previous definition of module 'TLFragmenter_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(105619): overwriting previous definition of module 'TLInterconnectCoupler_17'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(105619): previous definition of module 'TLInterconnectCoupler_17' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(107907): overwriting previous definition of module 'PeripheryBus_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(107907): previous definition of module 'PeripheryBus_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(110635): overwriting previous definition of module 'TLMonitor_31'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(110635): previous definition of module 'TLMonitor_31' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113363): overwriting previous definition of module 'TLMonitor_32'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113363): previous definition of module 'TLMonitor_32' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113789): overwriting previous definition of module 'TLXbar_6'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113789): previous definition of module 'TLXbar_6' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113837): overwriting previous definition of module 'TLXbar_7'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113837): previous definition of module 'TLXbar_7' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113852): overwriting previous definition of module 'IntXbar_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113852): previous definition of module 'IntXbar_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113858): overwriting previous definition of module 'BundleBridgeNexus_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113858): previous definition of module 'BundleBridgeNexus_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(113864): overwriting previous definition of module 'BundleBridgeNexus_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(113864): previous definition of module 'BundleBridgeNexus_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(114081): overwriting previous definition of module 'ScratchpadSlavePort'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(114081): previous definition of module 'ScratchpadSlavePort' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(114216): overwriting previous definition of module 'Repeater_9'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(114216): previous definition of module 'Repeater_9' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(114525): overwriting previous definition of module 'TLFragmenter_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(114525): previous definition of module 'TLFragmenter_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(116873): overwriting previous definition of module 'TLMonitor_33'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(116873): previous definition of module 'TLMonitor_33' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(117091): overwriting previous definition of module 'TLBuffer_13'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(117091): previous definition of module 'TLBuffer_13' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(117456): overwriting previous definition of module 'SodorMasterAdapter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(117456): previous definition of module 'SodorMasterAdapter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(117867): overwriting previous definition of module 'CtlPath'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(117867): previous definition of module 'CtlPath' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(118610): overwriting previous definition of module 'CSRFile'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(118610): previous definition of module 'CSRFile' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(119254): overwriting previous definition of module 'DatPath'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(119254): previous definition of module 'DatPath' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(119465): overwriting previous definition of module 'Core'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(119465): previous definition of module 'Core' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(119529): overwriting previous definition of module 'MemReader'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(119529): previous definition of module 'MemReader' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(119578): overwriting previous definition of module 'MemWriter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(119578): previous definition of module 'MemWriter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(119982): overwriting previous definition of module 'AsyncScratchPadMemory'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(119982): previous definition of module 'AsyncScratchPadMemory' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(120027): overwriting previous definition of module 'SodorRequestRouter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(120027): previous definition of module 'SodorRequestRouter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(120291): overwriting previous definition of module 'SodorInternalTile'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(120291): previous definition of module 'SodorInternalTile' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(120429): overwriting previous definition of module 'SodorScratchpadAdapter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(120429): previous definition of module 'SodorScratchpadAdapter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(121177): overwriting previous definition of module 'SodorTile'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(121177): previous definition of module 'SodorTile' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(121354): overwriting previous definition of module 'TileResetDomain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(121354): previous definition of module 'TileResetDomain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(121363): overwriting previous definition of module 'FixedClockBroadcast_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(121363): previous definition of module 'FixedClockBroadcast_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(121426): overwriting previous definition of module 'TLBuffer_15'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(121426): previous definition of module 'TLBuffer_15' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(124392): overwriting previous definition of module 'TLMonitor_35'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(124392): previous definition of module 'TLMonitor_35' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(124635): overwriting previous definition of module 'TLBuffer_16'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(124635): previous definition of module 'TLBuffer_16' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(124683): overwriting previous definition of module 'TLBuffer_17'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(124683): previous definition of module 'TLBuffer_17' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(124952): overwriting previous definition of module 'Queue_23'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(124952): previous definition of module 'Queue_23' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125121): overwriting previous definition of module 'TLBuffer_18'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125121): previous definition of module 'TLBuffer_18' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125190): overwriting previous definition of module 'NonSyncResetSynchronizerPrimitiveShiftReg_d3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125190): previous definition of module 'NonSyncResetSynchronizerPrimitiveShiftReg_d3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125207): overwriting previous definition of module 'SynchronizerShiftReg_w1_d3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125207): previous definition of module 'SynchronizerShiftReg_w1_d3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125224): overwriting previous definition of module 'IntSyncAsyncCrossingSink'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125224): previous definition of module 'IntSyncAsyncCrossingSink' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125233): overwriting previous definition of module 'IntSyncSyncCrossingSink'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125233): previous definition of module 'IntSyncSyncCrossingSink' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125239): overwriting previous definition of module 'IntSyncSyncCrossingSink_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125239): previous definition of module 'IntSyncSyncCrossingSink_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125306): overwriting previous definition of module 'AsyncResetRegVec_w1_i0'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125306): previous definition of module 'AsyncResetRegVec_w1_i0' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125327): overwriting previous definition of module 'IntSyncCrossingSource_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125327): previous definition of module 'IntSyncCrossingSource_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(125992): overwriting previous definition of module 'TilePRCIDomain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(125992): previous definition of module 'TilePRCIDomain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(128414): overwriting previous definition of module 'TLMonitor_36'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(128414): previous definition of module 'TLMonitor_36' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(128483): overwriting previous definition of module 'LevelGateway'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(128483): previous definition of module 'LevelGateway' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(128495): overwriting previous definition of module 'PLICFanIn'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(128495): previous definition of module 'PLICFanIn' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(128721): overwriting previous definition of module 'Queue_25'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(128721): previous definition of module 'Queue_25' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(129103): overwriting previous definition of module 'TLPLIC'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(129103): previous definition of module 'TLPLIC' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(129188): overwriting previous definition of module 'ClockSinkDomain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(129188): previous definition of module 'ClockSinkDomain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(131581): overwriting previous definition of module 'TLMonitor_37'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(131581): previous definition of module 'TLMonitor_37' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(131838): overwriting previous definition of module 'CLINT'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(131838): previous definition of module 'CLINT' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(133561): overwriting previous definition of module 'TLMonitor_38'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(133561): previous definition of module 'TLMonitor_38' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(133886): overwriting previous definition of module 'TLXbar_8'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(133886): previous definition of module 'TLXbar_8' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(133921): overwriting previous definition of module 'DMIToTL'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(133921): previous definition of module 'DMIToTL' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(135049): overwriting previous definition of module 'TLMonitor_39'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(135049): previous definition of module 'TLMonitor_39' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(135310): overwriting previous definition of module 'TLDebugModuleOuter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(135310): previous definition of module 'TLDebugModuleOuter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(135316): overwriting previous definition of module 'IntSyncCrossingSource_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(135316): previous definition of module 'IntSyncCrossingSource_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(137247): overwriting previous definition of module 'TLMonitor_40'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(137247): previous definition of module 'TLMonitor_40' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(137490): overwriting previous definition of module 'TLBusBypassBar'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(137490): previous definition of module 'TLBusBypassBar' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(138904): overwriting previous definition of module 'TLMonitor_41'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(138904): previous definition of module 'TLMonitor_41' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(139149): overwriting previous definition of module 'TLError_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(139149): previous definition of module 'TLError_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(139340): overwriting previous definition of module 'TLBusBypass'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(139340): previous definition of module 'TLBusBypass' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141420): overwriting previous definition of module 'TLMonitor_42'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141420): previous definition of module 'TLMonitor_42' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141515): overwriting previous definition of module 'AsyncResetSynchronizerPrimitiveShiftReg_d3_i0'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141515): previous definition of module 'AsyncResetSynchronizerPrimitiveShiftReg_d3_i0' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141536): overwriting previous definition of module 'AsyncResetSynchronizerShiftReg_w1_d3_i0'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141536): previous definition of module 'AsyncResetSynchronizerShiftReg_w1_d3_i0' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141557): overwriting previous definition of module 'AsyncResetSynchronizerShiftReg_w1_d3_i0_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141557): previous definition of module 'AsyncResetSynchronizerShiftReg_w1_d3_i0_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141578): overwriting previous definition of module 'AsyncValidSync'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141578): previous definition of module 'AsyncValidSync' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141788): overwriting previous definition of module 'AsyncQueueSource'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141788): previous definition of module 'AsyncQueueSource' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(141850): overwriting previous definition of module 'ClockCrossingReg_w43'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(141850): previous definition of module 'ClockCrossingReg_w43' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(142064): overwriting previous definition of module 'AsyncQueueSink'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(142064): previous definition of module 'AsyncQueueSink' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(142268): overwriting previous definition of module 'TLAsyncCrossingSource'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(142268): previous definition of module 'TLAsyncCrossingSource' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(142478): overwriting previous definition of module 'AsyncQueueSource_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(142478): previous definition of module 'AsyncQueueSource_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(142980): overwriting previous definition of module 'TLDebugModuleOuterAsync'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(142980): previous definition of module 'TLDebugModuleOuterAsync' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(145342): overwriting previous definition of module 'TLMonitor_43'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(145342): previous definition of module 'TLMonitor_43' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(147734): overwriting previous definition of module 'TLMonitor_44'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(147734): previous definition of module 'TLMonitor_44' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(150671): overwriting previous definition of module 'TLDebugModuleInner'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(150671): previous definition of module 'TLDebugModuleInner' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(150733): overwriting previous definition of module 'ClockCrossingReg_w55'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(150733): previous definition of module 'ClockCrossingReg_w55' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(150946): overwriting previous definition of module 'AsyncQueueSink_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(150946): previous definition of module 'AsyncQueueSink_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(151166): overwriting previous definition of module 'AsyncQueueSource_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(151166): previous definition of module 'AsyncQueueSource_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(151327): overwriting previous definition of module 'TLAsyncCrossingSink'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(151327): previous definition of module 'TLAsyncCrossingSink' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(151389): overwriting previous definition of module 'ClockCrossingReg_w15'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(151389): previous definition of module 'ClockCrossingReg_w15' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(151592): overwriting previous definition of module 'AsyncQueueSink_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(151592): previous definition of module 'AsyncQueueSink_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(151929): overwriting previous definition of module 'TLDebugModuleInnerAsync'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(151929): previous definition of module 'TLDebugModuleInnerAsync' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(152216): overwriting previous definition of module 'TLDebugModule'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(152216): previous definition of module 'TLDebugModule' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(152222): overwriting previous definition of module 'BundleBridgeNexus_13'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(152222): previous definition of module 'BundleBridgeNexus_13' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(152289): overwriting previous definition of module 'AsyncResetRegVec_w2_i0'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(152289): previous definition of module 'AsyncResetRegVec_w2_i0' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(152313): overwriting previous definition of module 'IntSyncCrossingSource_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(152313): previous definition of module 'IntSyncCrossingSource_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(154265): overwriting previous definition of module 'TLMonitor_45'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(154265): previous definition of module 'TLMonitor_45' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(155361): overwriting previous definition of module 'TLROM'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(155361): previous definition of module 'TLROM' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(155430): overwriting previous definition of module 'ClockSinkDomain_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(155430): previous definition of module 'ClockSinkDomain_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(158467): overwriting previous definition of module 'TLMonitor_46'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(158467): previous definition of module 'TLMonitor_46' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(158624): overwriting previous definition of module 'HellaPeekingArbiter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(158624): previous definition of module 'HellaPeekingArbiter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(158732): overwriting previous definition of module 'GenericSerializer'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(158732): previous definition of module 'GenericSerializer' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(158867): overwriting previous definition of module 'GenericDeserializer'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(158867): previous definition of module 'GenericDeserializer' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(159293): overwriting previous definition of module 'TLSerdesser'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(159293): previous definition of module 'TLSerdesser' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(162359): overwriting previous definition of module 'TLMonitor_47'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(162359): previous definition of module 'TLMonitor_47' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(162653): overwriting previous definition of module 'Queue_26'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(162653): previous definition of module 'Queue_26' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(162947): overwriting previous definition of module 'Queue_27'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(162947): previous definition of module 'Queue_27' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(163190): overwriting previous definition of module 'TLBuffer_19'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(163190): previous definition of module 'TLBuffer_19' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(163497): overwriting previous definition of module 'ClockSinkDomain_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(163497): previous definition of module 'ClockSinkDomain_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(163548): overwriting previous definition of module 'TLBuffer_20'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(163548): previous definition of module 'TLBuffer_20' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(165941): overwriting previous definition of module 'TLMonitor_48'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(165941): previous definition of module 'TLMonitor_48' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(166067): overwriting previous definition of module 'UARTTx'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(166067): previous definition of module 'UARTTx' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(166193): overwriting previous definition of module 'QueueCompatibility'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(166193): previous definition of module 'QueueCompatibility' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(166390): overwriting previous definition of module 'UARTRx'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(166390): previous definition of module 'UARTRx' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(166866): overwriting previous definition of module 'TLUART'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(166866): previous definition of module 'TLUART' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(166955): overwriting previous definition of module 'ClockSinkDomain_3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(166955): previous definition of module 'ClockSinkDomain_3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(169348): overwriting previous definition of module 'TLMonitor_49'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(169348): previous definition of module 'TLMonitor_49' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(169416): overwriting previous definition of module 'AsyncResetRegVec_w1_i1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(169416): previous definition of module 'AsyncResetRegVec_w1_i1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(169658): overwriting previous definition of module 'TileClockGater'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(169658): previous definition of module 'TileClockGater' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172051): overwriting previous definition of module 'TLMonitor_50'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172051): previous definition of module 'TLMonitor_50' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172119): overwriting previous definition of module 'AsyncResetRegVec_w1_i0_5'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172119): previous definition of module 'AsyncResetRegVec_w1_i0_5' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172252): overwriting previous definition of module 'TileResetSetter'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172252): previous definition of module 'TileResetSetter' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172607): overwriting previous definition of module 'ClockSinkDomain_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172607): previous definition of module 'ClockSinkDomain_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172640): overwriting previous definition of module 'ClockGroupAggregator_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172640): previous definition of module 'ClockGroupAggregator_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172675): overwriting previous definition of module 'ClockGroupParameterModifier'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172675): previous definition of module 'ClockGroupParameterModifier' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172718): overwriting previous definition of module 'ClockGroupParameterModifier_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172718): previous definition of module 'ClockGroupParameterModifier_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172761): overwriting previous definition of module 'ClockGroupCombiner'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172761): previous definition of module 'ClockGroupCombiner' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172782): overwriting previous definition of module 'ResetCatchAndSync_d3'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172782): previous definition of module 'ResetCatchAndSync_d3' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172880): overwriting previous definition of module 'ClockGroupResetSynchronizer'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172880): previous definition of module 'ClockGroupResetSynchronizer' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(172889): overwriting previous definition of module 'ClockGroup_4'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(172889): previous definition of module 'ClockGroup_4' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(173336): overwriting previous definition of module 'CaptureUpdateChain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(173336): previous definition of module 'CaptureUpdateChain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(173891): overwriting previous definition of module 'CaptureUpdateChain_1'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(173891): previous definition of module 'CaptureUpdateChain_1' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(174260): overwriting previous definition of module 'CaptureChain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(174260): previous definition of module 'CaptureChain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(174369): overwriting previous definition of module 'JtagStateMachine'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(174369): previous definition of module 'JtagStateMachine' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(174508): overwriting previous definition of module 'CaptureUpdateChain_2'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(174508): previous definition of module 'CaptureUpdateChain_2' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(174651): overwriting previous definition of module 'JtagTapController'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(174651): previous definition of module 'JtagTapController' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(174744): overwriting previous definition of module 'JtagBypassChain'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(174744): previous definition of module 'JtagBypassChain' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(175177): overwriting previous definition of module 'DebugTransportModuleJTAG'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(175177): previous definition of module 'DebugTransportModuleJTAG' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(177824): overwriting previous definition of module 'DigitalTop'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(177824): previous definition of module 'DigitalTop' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(177862): overwriting previous definition of module 'DividerOnlyClockGenerator'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(177862): previous definition of module 'DividerOnlyClockGenerator' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(177883): overwriting previous definition of module 'ResetSynchronizerShiftReg_w1_d3_i0'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(177883): previous definition of module 'ResetSynchronizerShiftReg_w1_d3_i0' is here
+[WARN (VERI-1206)] src/sodor2/sodor_2_stage.sv(178986): overwriting previous definition of module 'ChipTop'
+[INFO (VERI-2142)] src/sodor2/sodor_2_stage.sv(178986): previous definition of module 'ChipTop' is here
+[INFO (VERI-2561)] src/sodor2/two_copy_top_c1.sv(116): undeclared symbol 'stall_1', assumed default net type 'wire'
+[INFO (VERI-2561)] src/sodor2/two_copy_top_c1.sv(137): undeclared symbol 'stall_2', assumed default net type 'wire'
+[WARN (VERI-1362)] src/sodor2/two_copy_top_c1.sv(172): 'stall_1' is already implicitly declared on line 116
+[WARN (VERI-1362)] src/sodor2/two_copy_top_c1.sv(172): 'stall_2' is already implicitly declared on line 137
+[-- (VERI-1482)] Analyzing Verilog file 'src/sodor2/param.vh'
+% 
+% elaborate -top top -bbox_mul 256 -bbox_a 1024 -bbox_m plusarg_reader -bbox_m GenericDigitalInIOCell -bbox_m GenericDigitalOutIOCell -bbox_m ClockDividerN -bbox_m EICG_wrapper
+INFO (ISW003): Top module name is "top".
+[INFO (HIER-8002)] src/sodor2/two_copy_top_c1.sv(244): Disabling old hierarchical reference handler
+[WARN (VERI-1927)] src/sodor2/two_copy_top_c1.sv(131): port 'io_imem_req_valid' remains unconnected for this instance
+[WARN (VERI-1927)] src/sodor2/two_copy_top_c1.sv(152): port 'io_imem_req_valid' remains unconnected for this instance
+[INFO (VERI-1018)] src/sodor2/sodor_2_stage.sv(117457): compiling module 'CtlPath'
+[INFO (VERI-1018)] src/sodor2/sodor_2_stage.sv(117868): compiling module 'CSRFile'
+[WARN (VERI-1060)] src/sodor2/sodor_2_stage.sv(118605): 'initial' construct is ignored
+[WARN (VERI-2512)] src/sodor2/sodor_2_stage.sv(118451): severity system task 'fatal' is ignored for synthesis
+[WARN (VERI-1142)] src/sodor2/sodor_2_stage.sv(118464): system task 'fwrite' is ignored for synthesis
+[WARN (VERI-2512)] src/sodor2/sodor_2_stage.sv(118475): severity system task 'fatal' is ignored for synthesis
+[WARN (VERI-1142)] src/sodor2/sodor_2_stage.sv(118487): system task 'fwrite' is ignored for synthesis
+[INFO (VERI-1018)] src/sodor2/sodor_2_stage.sv(118721): compiling module 'DatPath'
+[WARN (VERI-1060)] src/sodor2/sodor_2_stage.sv(119249): 'initial' construct is ignored
+[WARN (VERI-9005)] src/sodor2/sodor_2_stage.sv(119059): 5-bit index expression 'regfile_io_ddpath_rdata_MPORT_addr' is larger than the required 2 bits. This might lead to an out-of-bound access
+[WARN (VERI-9005)] src/sodor2/sodor_2_stage.sv(119062): 5-bit index expression 'regfile_exe_rs1_data_MPORT_addr' is larger than the required 2 bits. This might lead to an out-of-bound access
+[WARN (VERI-9005)] src/sodor2/sodor_2_stage.sv(119065): 5-bit index expression 'regfile_exe_rs2_data_MPORT_addr' is larger than the required 2 bits. This might lead to an out-of-bound access
+[WARN (VERI-9005)] src/sodor2/sodor_2_stage.sv(119106): 5-bit index expression 'regfile_MPORT_addr' is larger than the required 2 bits. This might lead to an out-of-bound access
+[WARN (VERI-9005)] src/sodor2/sodor_2_stage.sv(119109): 5-bit index expression 'regfile_MPORT_1_addr' is larger than the required 2 bits. This might lead to an out-of-bound access
+[WARN (VERI-1142)] src/sodor2/sodor_2_stage.sv(119183): system task 'fwrite' is ignored for synthesis
+[INFO (VERI-1018)] src/sodor2/sodor_2_stage.sv(119255): compiling module 'Core'
+[INFO (VERI-1018)] src/sodor2/two_copy_top_c1.sv(21): compiling module 'top'
+[WARN (VERI-8028)] src/sodor2/two_copy_top_c1.sv(115): missing/open ports on instance copy1 of module Core
+[WARN (VERI-8028)] src/sodor2/two_copy_top_c1.sv(136): missing/open ports on instance copy2 of module Core
+[INFO (VERI-8005)] src/sodor2/two_copy_top_c1.sv(116): Unintentional sequential element inferred for stall_1 read before write using blocking assignment
+[INFO (VERI-8005)] src/sodor2/two_copy_top_c1.sv(137): Unintentional sequential element inferred for stall_2 read before write using blocking assignment
+[INFO (VERI-8005)] src/sodor2/two_copy_top_c1.sv(172): Unintentional sequential element inferred for invalid_program read before write using blocking assignment
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(31): net 'io_imem_resp_valid_shared' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(32): net 'io_dmem_resp_valid_shared' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(35): net 'io_imem_resp_bits_data_shared[31]' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(36): net 'io_dmem_resp_bits_data_shared[31]' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(39): net 'io_imem_resp_valid_unc' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(40): net 'io_dmem_resp_valid_unc' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(43): net 'io_imem_resp_bits_data_unc[31]' does not have a driver
+[WARN (VDB-1002)] src/sodor2/two_copy_top_c1.sv(44): net 'io_dmem_resp_bits_data_unc[31]' does not have a driver
+INFO (INL208): Elaboration synthesis summary:
+  Number of synthesized netlists          5 (0 packages)
+  Single run mode                         On
+  Pipeline                                On (5 pipelined netlists)
+  Late hierarchical reference connection  On
+  Number of analyzed Verilog modules      250 (5 synthesized)
+  Number of analyzed VHDL entities        0 (0 synthesized)
+  Advanced Incremental run mode           Off
+INFO (INL003): Clearing all state information (assumes, stopats, and so forth).
+top
+[<embedded>] % clock clk
+[<embedded>] % reset rst -non_resettable_regs 0
+WARNING (WRS016): The effects of "reset" options (such as "-non_resettable_regs", "-abstract_value") might not be reflected in the trace prefix.
+    For message help, type "help -message WRS016".
+INFO (IPM031): Clearing proof results of all properties.
+INFO (IRS006): Current reset condition is "rst".
+[<embedded>] % 
+[<embedded>] % abstract -init_value {copy1.d.regfile}
+[<embedded>] % abstract -init_value {copy2.d.regfile}
+[<embedded>] % 
+[<embedded>] % get_design_info -list undriven
+List of undriven: 10 (134)
+-------------------
+clk (1)
+io_dmem_resp_bits_data_shared (32)
+io_dmem_resp_bits_data_unc (32)
+io_dmem_resp_valid_shared (1)
+io_dmem_resp_valid_unc (1)
+io_imem_resp_bits_data_shared (32)
+io_imem_resp_bits_data_unc (32)
+io_imem_resp_valid_shared (1)
+io_imem_resp_valid_unc (1)
+rst (1)
+
+clk io_dmem_resp_bits_data_shared io_dmem_resp_bits_data_unc io_dmem_resp_valid_shared io_dmem_resp_valid_unc io_imem_resp_bits_data_shared io_imem_resp_bits_data_unc io_imem_resp_valid_shared io_imem_resp_valid_unc rst
+[<embedded>] % 
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % # Address range constraints
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % assume {(copy1.io_imem_req_bits_addr >> 2) < `IMEM_SIZE}
+INFO (IPM005): The name "<embedded>::assume:0" is assigned to assumption "(copy1.io_imem_req_bits_addr >> 2) < `IMEM_SIZE".
+assume:0
+[<embedded>] % assume {(copy2.io_imem_req_bits_addr >> 2) < `IMEM_SIZE}
+INFO (IPM005): The name "<embedded>::assume:1" is assigned to assumption "(copy2.io_imem_req_bits_addr >> 2) < `IMEM_SIZE".
+assume:1
+[<embedded>] % assume {(mem_addr_1>>2 < `MEM_SIZE && mem_addr_1>>2 >= `DMEM_SIZE) || mem_addr_1 == 0}
+INFO (IPM005): The name "<embedded>::assume:2" is assigned to assumption "(mem_addr_1>>2 < `MEM_SIZE && mem_addr_1>>2 >= `DMEM_SIZE) || mem_addr_1 == 0".
+assume:2
+[<embedded>] % assume {(mem_addr_2>>2 < `MEM_SIZE && mem_addr_2>>2 >= `DMEM_SIZE) || mem_addr_2 == 0}
+INFO (IPM005): The name "<embedded>::assume:3" is assigned to assumption "(mem_addr_2>>2 < `MEM_SIZE && mem_addr_2>>2 >= `DMEM_SIZE) || mem_addr_2 == 0".
+assume:3
+[<embedded>] % 
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % # Legal instructions
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % assume {copy1.d.regfile_exe_rs1_data_MPORT_addr < `RF_SIZE && copy1.d.regfile_exe_rs2_data_MPORT_addr < `RF_SIZE}
+WARNING (WNL023): Expression sizes mismatch.
+WARNING (WNL023): Expression sizes mismatch.
+INFO (IPM005): The name "<embedded>::assume:4" is assigned to assumption "copy1.d.regfile_exe_rs1_data_MPORT_addr < `RF_SIZE && copy1.d.regfile_exe_rs2_data_MPORT_addr < `RF_SIZE".
+assume:4
+[<embedded>] % assume {copy2.d.regfile_exe_rs1_data_MPORT_addr < `RF_SIZE && copy2.d.regfile_exe_rs2_data_MPORT_addr < `RF_SIZE}
+INFO (IPM005): The name "<embedded>::assume:5" is assigned to assumption "copy2.d.regfile_exe_rs1_data_MPORT_addr < `RF_SIZE && copy2.d.regfile_exe_rs2_data_MPORT_addr < `RF_SIZE".
+assume:5
+[<embedded>] % assume {copy1.d.regfile_MPORT_1_addr < `RF_SIZE}
+WARNING (WNL023): Expression sizes mismatch.
+INFO (IPM005): The name "<embedded>::assume:6" is assigned to assumption "copy1.d.regfile_MPORT_1_addr < `RF_SIZE".
+assume:6
+[<embedded>] % assume {copy2.d.regfile_MPORT_1_addr < `RF_SIZE}
+INFO (IPM005): The name "<embedded>::assume:7" is assigned to assumption "copy2.d.regfile_MPORT_1_addr < `RF_SIZE".
+assume:7
+[<embedded>] % assume {!copy1.c.illegal && !copy2.c.illegal}
+INFO (IPM005): The name "<embedded>::assume:8" is assigned to assumption "!copy1.c.illegal && !copy2.c.illegal".
+assume:8
+[<embedded>] % assume {!copy1.c.io_dat_inst_misaligned && !copy2.c.io_dat_inst_misaligned}
+INFO (IPM005): The name "<embedded>::assume:9" is assigned to assumption "!copy1.c.io_dat_inst_misaligned && !copy2.c.io_dat_inst_misaligned".
+assume:9
+[<embedded>] % assume {!copy1.c.io_dat_data_misaligned && !copy2.c.io_dat_data_misaligned}
+INFO (IPM005): The name "<embedded>::assume:10" is assigned to assumption "!copy1.c.io_dat_data_misaligned && !copy2.c.io_dat_data_misaligned".
+assume:10
+[<embedded>] % 
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % # Same program assumption (constant-time contract)
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % assume {!invalid_program}
+INFO (IPM005): The name "<embedded>::assume:11" is assigned to assumption "!invalid_program".
+assume:11
+[<embedded>] % 
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % # Security property: no timing leakage
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % assert {!((commit_deviation || addr_deviation) && finish_1 && finish_2 && !stall_1 && !stall_2)}
+INFO (IPM004): The name "property:0" is assigned to assertion "!((commit_deviation || addr_deviation) && finish_1 && finish_2 && !stall_1 && !stall_2)".
+property:0
+[<embedded>] % 
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % # Prove configuration (AM for unbounded proof)
+[<embedded>] % # ---------------------------------------------------------------------------
+[<embedded>] % set_prove_orchestration off
+[<embedded>] % set_engine_mode {AM}
+[<embedded>] % set_prove_time_limit 7d
+[<embedded>] % prove -all
+INFO (IPF036): Starting proof on task: "<embedded>", 1 properties to prove with 0 already proven/unreachable
+INFO (IRS003): Setting non-resettable flop to value 0 during reset analysis.
+INFO (IRS029): Starting reset analysis: phase 1 of 4.
+INFO (IRS030): Running reset analysis: phase 2 of 4.
+INFO (IRS031): Running reset analysis: phase 3 of 4.
+INFO (IRS020): Starting the reset analysis simulation with a limit of 100 iterations (phase 4 of 4).
+INFO (ISIM006): Running simulation: {mode = single, probe = all}.
+INFO (IRS024): Reset iterations 0 to 4 analyzed.
+INFO (ISIM008): Simulation is processing trace data. Total number of nets in analysis 4889.
+INFO (IRS018): Reset analysis simulation executed for 3 iterations. Assigned values for 1393 of 1393 design flops, 0 of 0 design latches, 0 of 0 internal elements.
+INFO (IRS039): Reset analysis complete.
+INFO (IPF031): Settings used for proof thread 0:
+    orchestration                      = off
+    time_limit                         = 604800s
+    per_property_time_limit            = 1s * 10 ^ scan
+    engine_mode                        = AM 
+    proofgrid_per_engine_max_jobs      = 1
+    max engine jobs                    = AM, total 1
+    proofgrid_mode                     = local
+    proofgrid_restarts                 = 10
+0: Using multistage preprocessing
+0: Starting reduce
+0: Finished reduce in 0.017s
+0.0.PRE: Performing Proof Simplification...
+0.0.AM: clocks: 3, declared: 1, looping: 0, posedge: 3, negedge: 0, noedge: 0, bothedge: 0
+0.0.AM: Proof Simplification Iteration 1	[0.00 s]
+0.0.AM: Proof Simplification Iteration 2	[0.01 s]
+0.0.AM: Proof Simplification Iteration 3	[0.01 s]
+0.0.AM: Proof Simplification Iteration 4	[0.02 s]
+0.0.AM: Proof Simplification Iteration 5	[0.02 s]
+0.0.PRE: Proof Simplification completed in 0.06 s
+0: About to start ProofGrid in its own thread with a limit of 10000 pending notifications and a limit of 10 traces.
+0: =============================== ProofGrid start ===============================
+0: ProofGrid usable level: 1
+0: Initial ProofGrid level: 1
+0: Computed task hash in 0.00ss
+0: ProofGrid is starting event handling
+0.0.AM: Proofgrid shell started at 3337521@everest3.comp.nus.edu.sg(local) jg_3337379_everest3.comp.nus.edu.sg_1
+0.0.AM: clocks: 1, declared: 1, looping: 0, posedge: 1, negedge: 0, noedge: 0, bothedge: 0
+0.0.AM: Last scan. Per property time limit: 0s
+0.0.AM: Starting proof for property "property:0"	[0.00 s].
+0.0.AM: Trace Attempt  1	[0.01 s]
+0.0.AM: Trace Attempt  2	[0.01 s]
+0.0.AM: Trace Attempt  3	[0.02 s]
+0.0.AM: Trace Attempt  4	[0.04 s]
+0.0.AM: Trace Attempt  5	[0.08 s]
+0.0.AM: Trace Attempt  1	[1.66 s]
+0.0.AM: Trace Attempt  2	[1.71 s]
+0.0.AM: Trace Attempt  3	[1.72 s]
+0.0.AM: Trace Attempt  4	[1.79 s]
+0.0.AM: Validation of fixpoint was successful. Time = 0.01
+0.0.AM: Requesting engine job to terminate
+0.0.AM: Trace Attempt  6	[3.35 s]
+0.0.AM: A proof was found: No trace exists. [4.82 s]
+INFO (IPF057): 0.0.AM: The property "property:0" was proven in 4.82 s.
+INFO (IPF144): 0: Initiating shutdown of proof [4.82 s]
+0.0.AM: Stopped processing property "property:0"	[4.82 s].
+0.0.AM: All properties determined. [4.82 s]
+0.0.AM: Exited with Success (@ 4.83 s)
+0: ProofGrid usable level: 0
+0: --------------------------------------------------------------
+ProofGrid Summary (utilization 98.71 %)
+--------------------------------------------------------------
+     engines started                               :     1
+     engine jobs started                           :     1
+
+    Average time in state (seconds)
+    ------------------------------------------------------
+    Engine  Pending     Running        Dead    Utilization
+    ------------------------------------------------------
+     AM        0.06        4.82        0.00       98.71 %
+    all        0.06        4.82        0.00       98.71 %
+
+    Total time in state (seconds)
+    -----------------------------------------
+            Pending     Running        Dead  
+    -----------------------------------------
+               0.06        4.82        0.00
+
+    Data read    : 990.00 B
+    Data written : 278.00 B
+
+INFO (IPF180): 0: ProofGrid utilization: 98.71% slot-seconds: 4.82
+0: All pending notifications were processed.
+INFO (IPF059): 0: Completed proof on task: "<embedded>"
+
+==============================================================
+SUMMARY
+==============================================================
+           Properties Considered              : 1
+                 assertions                   : 1
+                  - proven                    : 1 (100%)
+                  - bounded_proven (user)     : 0 (0%)
+                  - bounded_proven (auto)     : 0 (0%)
+                  - marked_proven             : 0 (0%)
+                  - cex                       : 0 (0%)
+                  - ar_cex                    : 0 (0%)
+                  - undetermined              : 0 (0%)
+                  - unknown                   : 0 (0%)
+                  - error                     : 0 (0%)
+                 covers                       : 0
+                  - unreachable               : 0
+                  - bounded_unreachable (user): 0
+                  - covered                   : 0
+                  - ar_covered                : 0
+                  - undetermined              : 0
+                  - unknown                   : 0
+                  - error                     : 0
+proven
+[<embedded>] % 
+[<embedded>] % save -jdb results/my_jdb_sodor_cpu_c1 -capture_setup -capture_session_data -force
+WARNING (WCD017): The switch "-jdb" has been deprecated.
+INFO (IHT027): Saving to file "/home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_sodor_cpu_c1/work/saveRestore/hunt/hunt.cfg".
+/home/zhenyu.lei/ShadowLogicArtifact/results/my_jdb_sodor_cpu_c1
+[<embedded>] % 
+[<embedded>] % exit
+[<embedded>] % INFO (IPL005): Received request to exit from the console.
+INFO: Waiting for proof threads to stop...
+INFO: Proof threads stopped.
+INFO (IPL018): The peak resident set memory use for this session was 0.522 GB.
+INFO (IPL014): Waiting for the Tcl-thread to exit.
+INFO (IPL015): The Tcl-thread exited with status 0.
+INFO (IPL016): Exiting the analysis session with status 0.
+
+real	0m10.268s
+user	0m7.737s
+sys	0m0.430s

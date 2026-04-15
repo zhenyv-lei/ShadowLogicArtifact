@@ -1,0 +1,63 @@
+2026-03-24 19:47:56.496506 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.496541 (3359139) main____ INFO    Jasper version info
+2026-03-24 19:47:56.496547 (3359139) main____ INFO      tool      : Jasper 2025.06
+2026-03-24 19:47:56.496550 (3359139) main____ INFO      version   : 2025.06 FCS 64 bits
+2026-03-24 19:47:56.496554 (3359139) main____ INFO      build date: 2025.06.25 13:01:28 UTC
+2026-03-24 19:47:56.496556 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.496557 (3359139) main____ INFO    Runtime info:
+2026-03-24 19:47:56.496560 (3359139) main____ INFO      platform  : Linux 4.18.0-477.15.1.el8_8.x86_64 x86_64
+2026-03-24 19:47:56.496564 (3359139) main____ INFO      hostname  : everest3.comp.nus.edu.sg
+2026-03-24 19:47:56.496568 (3359139) main____ INFO      pid       : 3359139
+2026-03-24 19:47:56.496570 (3359139) main____ INFO      arguments : '-style' 'windows' '-batch' '-proj' 'results/my_proj_intctrl_compliance' 'results/veri_intctrl_compliance.tcl'
+2026-03-24 19:47:56.496575 (3359139) main____ INFO      locale    : UTF-8
+2026-03-24 19:47:56.496577 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.496578 (3359139) main____ INFO    System resource limits info:
+2026-03-24 19:47:56.496582 (3359139) main____ INFO      virtual memory: unlimited
+2026-03-24 19:47:56.496585 (3359139) main____ INFO      cpu time      : unlimited
+2026-03-24 19:47:56.496590 (3359139) main____ INFO      processes     : 3088331
+2026-03-24 19:47:56.496596 (3359139) main____ INFO      stack size    : 12800000 B
+2026-03-24 19:47:56.496600 (3359139) main____ INFO      core file size: 0 B
+2026-03-24 19:47:56.496603 (3359139) main____ INFO      open files    : 262144
+2026-03-24 19:47:56.496606 (3359139) main____ INFO      file size     : unlimited
+2026-03-24 19:47:56.496608 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.496609 (3359139) main____ INFO    Memory statistics:
+2026-03-24 19:47:56.496612 (3359139) main____ INFO      total physical memory  : 790648116 kB
+2026-03-24 19:47:56.496615 (3359139) main____ INFO      free physical memory   : 763003748 kB
+2026-03-24 19:47:56.496617 (3359139) main____ INFO      committed address space: 3888836 kB
+2026-03-24 19:47:56.496619 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.497166 (3359139) main____ INFO    Important environment variables:
+2026-03-24 19:47:56.497179 (3359139) main____ INFO      CDS_LIC_FILE       : '/opt/cadence/licenses/license.dat'
+2026-03-24 19:47:56.497182 (3359139) main____ INFO      DISPLAY            : 'localhost:10.0'
+2026-03-24 19:47:56.497185 (3359139) main____ INFO      JASPER_CPU_CHECK   : '1'
+2026-03-24 19:47:56.497187 (3359139) main____ INFO      JASPER_INSTALL_DIR : '/opt/cadence/jasper_2025.06'
+2026-03-24 19:47:56.497190 (3359139) main____ INFO      JASPER_KERNEL_CHECK: '1'
+2026-03-24 19:47:56.497192 (3359139) main____ INFO      JASPER_OS_CHECK    : '1'
+2026-03-24 19:47:56.497194 (3359139) main____ INFO      JASPER_PLATFORM    : 'Linux64'
+2026-03-24 19:47:56.497197 (3359139) main____ INFO      LANG               : 'C.UTF-8'
+2026-03-24 19:47:56.497199 (3359139) main____ INFO    ----------------------------------------
+2026-03-24 19:47:56.497239 (3359139) lic_core INFO    Initializing license system ...
+2026-03-24 19:47:56.502841 (3359155) lic_core INFO    [19:47:56.415745] Configured Lic search path (24.01-s003): /opt/cadence/licenses/license.dat
+2026-03-24 19:47:56.509063 (3359139) lic_core INFO    ... license system initialized.
+2026-03-24 19:47:56.509214 (3359139) lic__man INFO    Claim 'fpv' for <ui>.
+2026-03-24 19:47:56.509237 (3359139) lic_core INFO    (1) checking out 'jasper_fpv' ...
+2026-03-24 19:47:56.512107 (3359139) lic_core INFO    ... (1) checkout failed (error: -5) ("FLEXnet ERROR(-5, 0, 0): No such feature exists.")
+2026-03-24 19:47:56.512128 (3359139) lic_core INFO    (2) checking out 'jasper_fao' ...
+2026-03-24 19:47:56.519081 (3359139) lic_core INFO    ... (2) checkout succeeded
+2026-03-24 19:47:56.563541 (3359139) session_ INFO    Starting analysis session with session id 'session_0' (launcher: <local>) ...
+2026-03-24 19:47:56.566677 (3359139) session_ INFO    Analysis session with session id 'session_0' started (pid: 3359169)
+2026-03-24 19:47:57.553782 (3359139) session_ INFO    Analysis session 'session_0' connected to the console (host: 127.0.0.1:44860)
+2026-03-24 19:47:57.947805 (3359139) lic__man INFO    Unclaim everything for 'session_0'.
+2026-03-24 19:47:57.991007 (3359139) lic__man INFO    Claim 'fpv' for 'session_0'.
+2026-03-24 19:47:57.991038 (3359139) lic__man INFO    Claim 'fpv' for 'session_0/prove-0'.
+2026-03-24 19:47:58.144872 (3359139) lic__man INFO    Unclaim everything for 'session_0/prove-0'.
+2026-03-24 19:47:58.491900 (3359139) main____ INFO    About to exit: request to exit with status 0 received from analysis session 'session_0'
+2026-03-24 19:47:58.650060 (3359139) session_ INFO    Analysis session 'session_0' disconnected.
+2026-03-24 19:47:58.650168 (3359139) lic__man INFO    Unclaim everything for 'session_0'.
+2026-03-24 19:47:58.650267 (3359139) session_ INFO    Process for analysis session 'session_0' has exited with exit status '0'.
+2026-03-24 19:47:59.004181 (3359139) bridge__ INFO    jg_bridge has exited with exit status '0'.
+2026-03-24 19:48:00.596283 (3359139) lic_core INFO    (2) checkin jasper_fao
+2026-03-24 19:48:00.596912 (3359139) lic_core INFO    Lic Summary:
+2026-03-24 19:48:00.596927 (3359139) lic_core INFO      [19:48:00.072553] Cdslmd servers:/opt/cadence/licenses/license.dat
+2026-03-24 19:48:00.596930 (3359139) lic_core INFO      [19:48:00.596842] Feature usage summary:
+2026-03-24 19:48:00.596932 (3359139) lic_core INFO      [19:48:00.596842] jasper_fao
+2026-03-24 19:48:00.597092 (3359139) main____ INFO    Exiting with status 0.

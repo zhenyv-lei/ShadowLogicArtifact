@@ -11,6 +11,11 @@ elaborate -top top -bbox_mul 256 -bbox_a 1024 -bbox_m plusarg_reader -bbox_m Gen
 clock clk
 reset rst -non_resettable_regs 0
 
+abstract -init_value {copy1.d.regfile}
+abstract -init_value {copy2.d.regfile}
+
+get_design_info -list undriven
+
 # ---------------------------------------------------------------------------
 # Address range constraints (same as original, adapted for Core module)
 # ---------------------------------------------------------------------------
@@ -22,10 +27,10 @@ assume {(mem_addr_2>>2 < `MEM_SIZE && mem_addr_2>>2 >= `DMEM_SIZE) || mem_addr_2
 # ---------------------------------------------------------------------------
 # Abstract memory contents (same as original, adapted for Core module)
 # ---------------------------------------------------------------------------
-abstract -NET {io_imem_resp_valid_shared io_imem_resp_bits_data_shared}
-abstract -NET {io_dmem_resp_valid_shared io_dmem_resp_bits_data_shared}
-abstract -NET {io_imem_resp_valid_unc io_imem_resp_bits_data_unc}
-abstract -NET {io_dmem_resp_valid_unc io_dmem_resp_bits_data_unc}
+# abstract -NET {io_imem_resp_valid_shared io_imem_resp_bits_data_shared}
+# abstract -NET {io_dmem_resp_valid_shared io_dmem_resp_bits_data_shared}
+# abstract -NET {io_imem_resp_valid_unc io_imem_resp_bits_data_unc}
+# abstract -NET {io_dmem_resp_valid_unc io_dmem_resp_bits_data_unc}
 
 # ---------------------------------------------------------------------------
 # Legal instructions
@@ -48,6 +53,27 @@ assume {!invalid_program}
 # ---------------------------------------------------------------------------
 assert {!((commit_deviation || addr_deviation) && finish_1 && finish_2 && !stall_1 && !stall_2)}
 
+
+# PTCI 的 allow 信号是否可达
+cover {allow_imem_gnt_diff}
+cover {allow_imem_rdata_diff}
+cover {allow_dmem_gnt_diff}
+cover {allow_dmem_rdata_diff}
+
+# sticky 是否可达
+cover {sticky_imem_req}
+cover {sticky_imem_addr}
+cover {sticky_dmem_req}
+cover {sticky_dmem_addr}
+cover {sticky_dmem_we}
+cover {sticky_dmem_wdata}
+
+# diff 信号是否可达
+cover {diff_imem_req}
+cover {diff_imem_addr}
+cover {diff_dmem_req}
+cover {diff_dmem_addr}
+
 # ---------------------------------------------------------------------------
 # Prove configuration
 # ---------------------------------------------------------------------------
@@ -56,6 +82,6 @@ set_engine_mode {AM}
 set_prove_time_limit 7d
 prove -all
 
-save -jdb my_jdb_c1_2copy_sodor2 -capture_setup -capture_session_data
+save -jdb my_jdb_c1_2copy_sodor2 -capture_setup -capture_session_data -force
 
 exit

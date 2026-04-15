@@ -22,7 +22,10 @@ module cpu_ooo_ext_mem(
   // External dmem write interface (store at commit)
   output                      dmem_wr_valid,
   output [`MEMD_SIZE_LOG-1:0] dmem_wr_addr,
-  output [`REG_LEN-1:0]       dmem_wr_data
+  output [`REG_LEN-1:0]       dmem_wr_data,
+  // Interrupt interface (C3 contract)
+  input                       interrupt,
+  output                      interrupt_taken
 );
 
   // STEP: PC
@@ -165,10 +168,11 @@ module cpu_ooo_ext_mem(
     // (`BR_PREDICT==`BR_PREDICT_FORWARD_DATA_THEN_BHB)?
       (F_rs2_stall? br_hist : F_rs2_data==0);
 
-  assign F_next_pc = (C_valid && C_squash)? C_next_pc :
-                     ROB_full?              F_pc :
-                     (F_is_br && F_taken)?  F_pc+F_rs1_br_offset :
-                                            F_pc+1;
+  assign F_next_pc = (C_valid && C_squash_br)?  C_next_pc :
+                     (C_valid && C_squash_int)? {`MEMI_SIZE_LOG{1'b0}} :
+                     ROB_full?                  F_pc :
+                     (F_is_br && F_taken)?      F_pc+F_rs1_br_offset :
+                                                F_pc+1;
 
 
 
@@ -739,8 +743,11 @@ else if (`OBSV==`OBSV_EVERY_ADDR)
 
   assign C_is_br   = ROB_is_br  [ROB_head];
   assign C_taken   = ROB_taken  [ROB_head];
-  assign C_squash  = C_is_br &&
-                     (ROB_predicted_taken[ROB_head] != ROB_taken[ROB_head]);
+  wire   C_squash_br  = C_is_br &&
+                       (ROB_predicted_taken[ROB_head] != ROB_taken[ROB_head]);
+  wire   C_squash_int = interrupt;
+  assign C_squash  = C_squash_br || C_squash_int;
+  assign interrupt_taken = C_valid && C_squash_int && !C_squash_br;
   assign C_next_pc = ROB_next_pc[ROB_head];
 
   assign C_wen     = ROB_wen    [ROB_head];

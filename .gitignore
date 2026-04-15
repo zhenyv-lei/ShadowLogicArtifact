@@ -1,12 +1,6 @@
-
-
-/.vagrant
-/build
+# 只保留最基本的系统/IDE 文件排除
 .DS_Store
-/jgproject
-*jgproject*
-*jg_myjdb*
 __pycache__
+*.pyc
 /.vscode
-
-soccontracts.pdf
+/.vagrant

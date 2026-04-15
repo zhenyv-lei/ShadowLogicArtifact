@@ -1,0 +1,31 @@
+% =============================================================================
+% 反例关键信号轨迹表（SimpleOoO + 常规缓存组合验证，16 周期 Spectre 型反例）
+% =============================================================================
+
+\begin{table}[htb]
+    \centering
+    \caption{SimpleOoO + 常规缓存组合验证的 16 周期反例信号轨迹。$\star$ 标注泄露路径上的三个关键节点：秘密依赖的推测地址到达缓存接口、缓存产生地址依赖的响应延迟、延迟差异经流水线传播至提交阶段。}
+    \label{tab:ch5_cex_signals}
+    \small
+    \begin{tabular}{clccc}
+        \hline
+        \textbf{周期} & \textbf{事件} & \textbf{副本 1} & \textbf{副本 2} & \textbf{差异} \\
+        \hline
+        T1--T5 & 流水线填充与正常执行 & \multicolumn{2}{c}{行为一致} & 无 \\
+        T6 & 分支指令进入流水线，推测路径启动 & \multicolumn{2}{c}{推测执行开始} & 无 \\
+        \hline
+        \multirow{2}{*}{T7} & $\star$ 推测 load 发射至缓存， & dmem\_req\_addr=$A$ & dmem\_req\_addr=$B$ & \textbf{地址} \\
+              & $\star$ 组合逻辑当拍判定命中/缺失 & resp\_delayed=0（命中） & resp\_delayed=1（缺失） & \textbf{时序} \\
+        T8--T10 & 副本 2 等待缓存 FSM 返回数据 & 可立即处理后续指令 & 推测 load 悬挂、ROB 条目占用 & — \\
+        \hline
+        T11 & 分支解析，发起 squash & 推测指令可立即清空 & 推测 load 需待数据返回后方可清空 & — \\
+        T12--T13 & $\star$ 时序差异经 squash 放大 & ROB 已空闲，发射后续指令 & ROB 被悬挂 load 占用，后续指令阻塞 & \textbf{流水线} \\
+        T14 & 副本 1 提交非推测指令 & C\_valid=1 & 指令已在 ROB 头部，C\_valid=0 & 提交 \\
+        T15 & 影子逻辑注册偏差，启动门控 & \multicolumn{2}{c}{commit\_deviation=1（影子逻辑），stall\_1=1} & — \\
+        T16 & 副本 2 完成提交，两侧排空 & \multicolumn{2}{c}{finish=1/1 $\wedge$ $\neg$stall，断言违反} & — \\
+        \hline
+    \end{tabular}
+    \begin{flushleft}
+    \small 注：$A, B$ 为两副本因秘密数据不同而产生的不同推测访存地址。常规缓存的 \texttt{resp\_delayed = req\_valid \& (req\_addr != cached\_addr)} 为当拍组合逻辑：T7 同拍内即判定副本 1 命中、副本 2 缺失。Spectre 型侧信道的传播机制：缓存缺失使副本 2 的推测 load 在 T8--T10 期间悬挂于 ROB，T11 分支解析虽发起 squash，但悬挂 load 需待缓存 FSM 返回数据后方可清空；ROB 条目持续占用导致后续非推测指令发射阻塞，副本 2 整体执行序较副本 1 向后平移约一拍（T12--T13）。T14 副本 1 先完成提交，副本 2 的对应指令已进入 ROB 头部但因前序周期的延迟尚差一拍，T15 影子逻辑（全局信号 commit\_deviation）捕获该偏差并对副本 1 启动门控时钟暂停，T16 副本 2 在门控等待期间完成最后一拍并触发 finish，此刻 commit\_deviation=1 $\wedge$ finish\_1=finish\_2=1 $\wedge$ $\neg$stall，违反安全属性断言 $\neg(\textit{commit\_deviation} \wedge \textit{finish}_1 \wedge \textit{finish}_2 \wedge \neg \textit{stall}_1 \wedge \neg \textit{stall}_2)$。
+    \end{flushleft}
+\end{table}

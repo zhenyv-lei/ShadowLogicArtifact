@@ -1,0 +1,66 @@
+\section{反例分析}
+\label{sec:ch5_cex_analysis}
+形式化验证发现安全属性违反时会返回具体反例，包含导致泄露的指令序列、秘密赋值与逐周期信号轨迹，不仅判定验证失败，更提供完整的攻击场景用以理解泄露机制并指导修复方向。本节围绕第~\ref{subsec:ch5_eval_fix}节的修复案例``SimpleOoO + 常规缓存''，从组合反例、处理器侧反例与平台侧反例三个层次定位每一反例所违反的合约条目与硬件根因。
+
+% =============================================================================
+\subsection{组合验证反例：推测 load 经缓存泄露}
+\label{subsec:ch5_cex_combined}
+
+组合验证的安全性断言为
+$\neg(\textit{commit\_deviation} \wedge \textit{finish}_1 \wedge \textit{finish}_2 \wedge \neg \textit{stall}_1 \wedge \neg \textit{stall}_2)$，
+即禁止在两副本均完成流水线排空且门控释放时，影子逻辑曾记录过提交时序偏差。验证失败意味着引擎找到一组输入使该禁止状态成立。NoFwd 配置的 SimpleOoO 与常规缓存的组合验证在 16 周期内发现此类反例，其因果链可从断言违反反向追溯：
+
+\begin{enumerate}
+    \item \textbf{断言条件成立}：某周期副本 1 的 \texttt{C\_valid=1} 而副本 2 的 \texttt{C\_valid=0}，影子逻辑据此置 \texttt{commit\_deviation=1}，后续两副本排空完成，所有触发条件同时满足。
+    \item \textbf{提交偏差的来源}：副本 2 的 load 因缓存响应延迟而悬挂于 ROB，阻塞后续指令推进，导致与副本 1 提交时序错位。
+    \item \textbf{响应延迟差异的来源}：常规缓存的组合逻辑
+          $\texttt{resp\_delayed} = \texttt{req\_valid} \land (\texttt{req\_addr} \neq \texttt{cached\_addr})$
+          将两副本间的 \texttt{req\_addr} 差异当拍转化为 \texttt{resp\_delayed} 差异。
+    \item \textbf{地址差异的来源}：NoFwd 允许推测 load 发射至内存接口，推测路径上以秘密计算的地址使两副本的 \texttt{req\_addr} 不同。
+\end{enumerate}
+
+该反例表明泄露源于处理器侧（推测地址到达接口）与平台侧（地址影响响应时序）的共同作用，切断任一侧即可消除泄露。以下两节的独立反例分别定位两侧缺陷。
+
+% =============================================================================
+\subsection{处理器侧反例：推测地址暴露于内存接口}
+\label{subsec:ch5_cex_nofwd}
+
+NoFwd 配置的 SimpleOoO 在 $C_2$ 合约下的 CPU\_TCI 验证产生 16 周期反例，无需接入真实缓存即可复现。
+
+CPU\_TCI 以 \texttt{sticky-one} 算子锁存处理器输出差异，并通过 $\textit{allow\_gnt\_diff} = s_{\textit{req}} \vee s_{\textit{addr}} \vee s_{\textit{we}}$ 控制插桩 MUX：当该信号为真时允许两副本 \texttt{resp\_delayed} 任取。反例触发过程为：推测路径上的 \texttt{dmem\_req\_addr} 首次出现差异 → XOR 与 \texttt{sticky-one} 将 $s_{\textit{addr}}$ 锁存为 1 → $\textit{allow\_gnt\_diff}$ 置 1 → 插桩 MUX 为副本 2 选择不同的 \texttt{resp\_delayed} → 时序差异经流水线传播至提交偏差 → 断言违反。
+
+该反例的独特价值是不依赖特定缓存实现，仅基于 $C_2$ 合约允许的平台行为即成立，证明 NoFwd 在\textbf{任何满足 $C_2$ 的平台}上均不安全。其硬件根因是 NoFwd 仅切断推测 load 的数据转发通路，未阻止\textbf{地址信号}到达内存接口。该反例指导修复策略一：在推测阶段完全抑制 load 发射（Delay 防御），从源头切断推测地址暴露路径。
+
+% =============================================================================
+\subsection{平台侧反例：地址依赖的缓存时序}
+\label{subsec:ch5_cex_platform}
+
+$C_1$ 合约对 \texttt{addr} 的约束为 $\texttt{addr} \rightarrow \Diamond\{\texttt{rdata}\}$，即 \texttt{addr} 仅允许影响 \texttt{rdata}，\textbf{不在 \texttt{gnt} 的允许影响集中}。Platform\_TCI 据此构造验证：两副本仅 \texttt{req\_addr} 可不同，其余输入一致；断言要求 \texttt{resp\_delayed} 输出一致。常规缓存在此验证中 1 周期即产生反例，其状态见表~\ref{tab:ch5_cex_platform}。
+
+\begin{table}[htb]
+    \centering
+    \caption{常规缓存 Platform\_TCI($C_1$) 反例的输入输出状态。}
+    \label{tab:ch5_cex_platform}
+    \small
+    \begin{tabular}{lcc}
+        \hline
+        \textbf{信号} & \textbf{副本 1} & \textbf{副本 2} \\
+        \hline
+        \texttt{req\_valid}, \texttt{we}, \texttt{cached\_addr}（输入） & \multicolumn{2}{c}{约束一致} \\
+        \texttt{req\_addr}（输入） & $X$（匹配 \texttt{cached\_addr}） & $Y \neq X$ \\
+        \texttt{resp\_delayed}（输出） & \textbf{0}（命中） & \textbf{1}（缺失） \\
+        \hline
+    \end{tabular}
+\end{table}
+
+反例的硬件根因是 \texttt{cache\_regular.v} 的一行组合逻辑
+$\texttt{resp\_delayed} = \texttt{req\_valid} \land (\texttt{req\_addr} \neq \texttt{cached\_addr})$，
+直接将 \texttt{req\_addr} 差异传播至 \texttt{resp\_delayed}。这是不依赖任何指令序列或微架构状态的\textbf{硬件本质特征}。
+
+同一缓存在 $C_2$ 合约下验证可通过（$C_2$ 将 \texttt{addr} 纳入 \texttt{gnt} 的允许影响集），说明违反并非``缓存不安全''的二元判定，而是``缓存满足 $C_2$ 但不满足 $C_1$''的合约层级分类结果。该反例指导修复策略二：将缓存替换为常数时间实现（Cache-S 或理想内存），使 \texttt{resp\_delayed} 不再依赖 \texttt{req\_addr}。
+
+% =============================================================================
+\subsection{反例分析小结}
+\label{subsec:ch5_cex_summary}
+
+三个反例分析表明，解耦验证框架通过反例精确定位泄露根因至合约条目与 RTL 代码行。组合反例揭示泄露源于两侧共同作用；处理器侧反例定位 NoFwd 对 \texttt{dmem\_req\_addr} 的保护缺失，且结论覆盖所有满足 $C_2$ 的平台；平台侧反例定位常规缓存的 \texttt{resp\_delayed} 组合逻辑为硬件本质缺陷，并展示合约层级对平台行为的精确分类。两个独立反例分别指导处理器侧（Delay 防御）与平台侧（Cache-S）的单侧修复，由此自然衍生的双侧同时修复提供双重保障。三种修复策略均在第~\ref{subsec:ch5_eval_fix}节得到实验验证。

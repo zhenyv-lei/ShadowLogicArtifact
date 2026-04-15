@@ -1,0 +1,386 @@
+# ----------------------------------------
+# Jasper Version Info
+# tool      : Jasper 2025.06
+# platform  : Linux 4.18.0-477.15.1.el8_8.x86_64
+# version   : 2025.06 FCS 64 bits
+# build date: 2025.06.25 13:01:28 UTC
+# ----------------------------------------
+# started   : 2026-03-24 01:49:50 +08
+# hostname  : everest3.comp.nus.edu.sg.(none)
+# pid       : 3305515
+# arguments : '-style' 'windows' '-label' 'session_0' '-console' '//127.0.0.1:45271' '-nowindow' '-exitonerror' '-data' 'AAABHniclY9bCsIwFERPRH/ErfhYQJcggisIba2o1AdprfilS3UncbyCEvzyQpg5N8OQOCC7xRixcY+3kjnSeXEv3SzvicLge9nXGTGmIKelZCMeik8EjuxEc7mKhjO1Eg1T9lzxn4TnIF1zYSVfKuPFhZIdM9vk1lvJB/Utfvo6cWD7Z9PE3lvbL54xGio4' '-bridge_url' '172.28.176.73:37871' '-proj' '/home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_nofwd_ct_obsv0_cache_r/sessionLogs/session_0' '-init' '-hidden' '/home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_nofwd_ct_obsv0_cache_r/.tmp/.initCmds.tcl' 'results/veri_nofwd_ct_obsv0_cache_r.tcl' '-hidden' '/home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_nofwd_ct_obsv0_cache_r/.tmp/.postCmds.tcl'
+
+Any disclosure about the Cadence Design Systems software or its use
+model to any third party violates the written Non-Disclosure Agreement
+between Cadence Design Systems, Inc. and the customer.
+
+THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
+CADENCE DESIGN SYSTEMS, INC. USE, DISCLOSURE, OR REPRODUCTION IS
+PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF CADENCE
+DESIGN SYSTEMS, INC.
+
+Copyright (C) 2000-2025 Cadence Design Systems, Inc. All Rights
+Reserved.  Unpublished -- rights reserved under the copyright laws of
+the United States.
+
+This product includes software developed by others and redistributed
+according to license agreement. See doc/third_party_readme.txt for
+further details.
+
+RESTRICTED RIGHTS LEGEND
+
+Use, duplication, or disclosure by the Government is subject to
+restrictions as set forth in subparagraph (c) (1) (ii) of the Rights in
+Technical Data and Computer Software clause at DFARS 252.227-7013 or
+subparagraphs (c) (1) and (2) of Commercial Computer Software -- Restricted
+Rights at 48 CFR 52.227-19, as applicable.
+
+
+                          Cadence Design Systems, Inc.
+                          2655 Seely Avenue
+                          San Jose, CA 95134
+                          Phone: 408.943.1234
+
+For technical assistance visit http://support.cadence.com.
+
+Jasper Apps Analysis Session - /home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_nofwd_ct_obsv0_cache_r/sessionLogs/session_0
+
+INFO: successfully checked out license "jasper_fao".
+INFO: reading configuration file "/home/zhenyu.lei/.config/cadence/jasper.conf".
+% # =============================================================================
+% # Experiment (3): NoFwd_spectre + CT + OBSV=0 + Regular Cache (ext_mem version)
+% # =============================================================================
+% # Uses cpu_ooo_ext_mem + cache_regular (with store support).
+% # Expected result: FAIL (cache hit/miss causes timing leak)
+% # =============================================================================
+% 
+% analyze +define+RF_SIZE=4+RF_SIZE_LOG=2+MEMI_SIZE=16+MEMI_SIZE_LOG=4+MEMD_SIZE=4+MEMD_SIZE_LOG=2+ROB_SIZE=4+ROB_SIZE_LOG=2+BR_PREDICT=0+USE_DEFENSE_PARTIAL_STT=+PARTIAL_STT_USE_SPEC=+OBSV=0+INIT_VALUE=0+IMM_STALL= -sva ./src/simpleooo/two_copy_top_ct_cache_r.v
+[-- (VERI-1482)] Analyzing Verilog file '/opt/cadence/jasper_2025.06/lib/verilog/packages/std/std.sv' into library 'std'
+[-- (VERI-1482)] Analyzing Verilog file './src/simpleooo/two_copy_top_ct_cache_r.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(1): analyzing included file 'src/simpleooo/param.v'
+[WARN (VERI-9001)] src/simpleooo/param.v(7): redefinition of command line macro RF_SIZE here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(8): redefinition of command line macro RF_SIZE_LOG here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(9): redefinition of command line macro MEMI_SIZE here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(10): redefinition of command line macro MEMI_SIZE_LOG here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(11): redefinition of command line macro MEMD_SIZE here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(12): redefinition of command line macro MEMD_SIZE_LOG here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(36): redefinition of command line macro ROB_SIZE here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(37): redefinition of command line macro ROB_SIZE_LOG here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(59): redefinition of command line macro BR_PREDICT here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(101): redefinition of command line macro OBSV here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(112): redefinition of command line macro INIT_VALUE here ignored
+[WARN (VERI-9001)] src/simpleooo/param.v(115): redefinition of command line macro IMM_STALL here ignored
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(3): analyzing included file 'src/simpleooo/decode.v'
+[INFO (VERI-1328)] src/simpleooo/decode.v(3): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(4): analyzing included file 'src/simpleooo/execute.v'
+[INFO (VERI-1328)] src/simpleooo/execute.v(3): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(5): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(6): analyzing included file 'src/simpleooo/rf.v'
+[INFO (VERI-1328)] src/simpleooo/rf.v(3): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(7): analyzing included file 'src/simpleooo/memi.v'
+[INFO (VERI-1328)] src/simpleooo/memi.v(3): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(9): analyzing included file 'src/simpleooo/cpu_ooo_ext_mem.v'
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(3): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(5): analyzing included file 'src/simpleooo/decode.v'
+[INFO (VERI-1328)] src/simpleooo/decode.v(3): analyzing included file 'src/simpleooo/param.v'
+[WARN (VERI-1206)] src/simpleooo/decode.v(50): overwriting previous definition of module 'decode'
+[INFO (VERI-2142)] src/simpleooo/decode.v(50): previous definition of module 'decode' is here
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(6): analyzing included file 'src/simpleooo/execute.v'
+[INFO (VERI-1328)] src/simpleooo/execute.v(3): analyzing included file 'src/simpleooo/param.v'
+[WARN (VERI-1206)] src/simpleooo/execute.v(56): overwriting previous definition of module 'execute'
+[INFO (VERI-2142)] src/simpleooo/execute.v(56): previous definition of module 'execute' is here
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(8): analyzing included file 'src/simpleooo/param.v'
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(9): analyzing included file 'src/simpleooo/rf.v'
+[INFO (VERI-1328)] src/simpleooo/rf.v(3): analyzing included file 'src/simpleooo/param.v'
+[WARN (VERI-1206)] src/simpleooo/rf.v(49): overwriting previous definition of module 'rf'
+[INFO (VERI-2142)] src/simpleooo/rf.v(49): previous definition of module 'rf' is here
+[INFO (VERI-1328)] src/simpleooo/cpu_ooo_ext_mem.v(10): analyzing included file 'src/simpleooo/memi.v'
+[INFO (VERI-1328)] src/simpleooo/memi.v(3): analyzing included file 'src/simpleooo/param.v'
+[WARN (VERI-1206)] src/simpleooo/memi.v(90): overwriting previous definition of module 'memi'
+[INFO (VERI-2142)] src/simpleooo/memi.v(90): previous definition of module 'memi' is here
+[INFO (VERI-2561)] src/simpleooo/cpu_ooo_ext_mem.v(141): undeclared symbol 'C_valid', assumed default net type 'wire'
+[INFO (VERI-2561)] src/simpleooo/cpu_ooo_ext_mem.v(141): undeclared symbol 'C_wen', assumed default net type 'wire'
+[INFO (VERI-2561)] src/simpleooo/cpu_ooo_ext_mem.v(141): undeclared symbol 'C_rd', assumed default net type 'wire'
+[INFO (VERI-2561)] src/simpleooo/cpu_ooo_ext_mem.v(141): undeclared symbol 'C_rd_data', assumed default net type 'wire'
+[WARN (VERI-2170)] src/simpleooo/cpu_ooo_ext_mem.v(151): data object 'F_next_pc' is already declared
+[INFO (VERI-1967)] src/simpleooo/cpu_ooo_ext_mem.v(30): previous declaration of 'F_next_pc' is from here
+[WARN (VERI-1329)] src/simpleooo/cpu_ooo_ext_mem.v(151): second declaration of 'F_next_pc' is ignored
+[WARN (VERI-1362)] src/simpleooo/cpu_ooo_ext_mem.v(717): 'C_valid' is already implicitly declared on line 141
+[WARN (VERI-1362)] src/simpleooo/cpu_ooo_ext_mem.v(729): 'C_wen' is already implicitly declared on line 141
+[WARN (VERI-1362)] src/simpleooo/cpu_ooo_ext_mem.v(730): 'C_rd' is already implicitly declared on line 141
+[WARN (VERI-1362)] src/simpleooo/cpu_ooo_ext_mem.v(731): 'C_rd_data' is already implicitly declared on line 141
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(119): identifier 'C_squash' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(119): identifier 'C_valid' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(121): identifier 'ROB_full' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(123): identifier 'ROB_tail' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(125): identifier 'C_valid' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(125): identifier 'C_is_br' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(125): identifier 'ROB_head' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(155): identifier 'C_is_br' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(155): identifier 'C_taken' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(164): identifier 'F_rs2_stall' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(164): identifier 'F_rs2_data' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(166): identifier 'F_rs2_stall' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(166): identifier 'F_rs2_data' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(168): identifier 'C_squash' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(168): identifier 'C_next_pc' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(169): identifier 'ROB_full' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(203): identifier 'ROB_head' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(204): identifier 'ROB_full' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(208): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(208): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(208): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(208): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(209): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(217): identifier 'C_squash' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(218): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(218): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(218): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(218): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(219): identifier 'i' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(261): identifier 'ROB_full' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(261): identifier 'ROB_tail' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(270): identifier 'ROB_state' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(271): identifier 'ROB_op' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(273): identifier 'ROB_isSpec' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(275): identifier 'ROB_head' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(279): identifier 'ROB_state' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(280): identifier 'ROB_op' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(282): identifier 'ROB_isSpec' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(284): identifier 'ROB_head' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(297): identifier 'ROB_rd_data' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(301): identifier 'ROB_rd_data' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(434): identifier 'C_squash' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(518): identifier 'ROB_exe_this_cycle' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(519): identifier 'ROB_rd_data_wire' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(520): identifier 'ROB_mem_addr_wire' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(521): identifier 'ROB_mem_data_wire' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(522): identifier 'ROB_taken_wire' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(523): identifier 'ROB_next_pc_wire' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(696): identifier 'C_mem_rdwt' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(696): identifier 'C_mem_valid' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(696): identifier 'C_squash' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(696): identifier 'C_mem_addr' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(709): identifier 'C_mem_valid' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(709): identifier 'C_mem_rdwt' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(710): identifier 'C_mem_addr' is used before its declaration
+[WARN (VERI-1875)] src/simpleooo/cpu_ooo_ext_mem.v(711): identifier 'C_mem_data' is used before its declaration
+[INFO (VERI-1328)] ./src/simpleooo/two_copy_top_ct_cache_r.v(10): analyzing included file 'src/simpleooo/cache_regular.v'
+% 
+% elaborate -top top -bbox_mul 256
+INFO (ISW003): Top module name is "top".
+[INFO (HIER-8002)] ./src/simpleooo/two_copy_top_ct_cache_r.v(200): Disabling old hierarchical reference handler
+[WARN (VERI-1927)] ./src/simpleooo/two_copy_top_ct_cache_r.v(76): port 'dmem_req_valid' remains unconnected for this instance
+[WARN (VERI-1927)] ./src/simpleooo/two_copy_top_ct_cache_r.v(86): port 'dmem_req_valid' remains unconnected for this instance
+[INFO (VERI-1018)] src/simpleooo/cache_regular.v(9): compiling module 'cache_regular'
+[INFO (VERI-1018)] src/simpleooo/memi.v(5): compiling module 'memi'
+[INFO (VERI-1018)] src/simpleooo/decode.v(5): compiling module 'decode'
+[INFO (VERI-1018)] src/simpleooo/rf.v(5): compiling module 'rf'
+[INFO (VERI-1018)] src/simpleooo/execute.v(5): compiling module 'execute'
+[WARN (VERI-1209)] src/simpleooo/execute.v(43): expression size 32 truncated to fit in target size 2
+[WARN (VERI-1209)] src/simpleooo/execute.v(53): expression size 32 truncated to fit in target size 4
+[WARN (VERI-1209)] src/simpleooo/execute.v(54): expression size 32 truncated to fit in target size 4
+[INFO (VERI-1018)] src/simpleooo/cpu_ooo_ext_mem.v(13): compiling module 'cpu_ooo_ext_mem'
+[WARN (VERI-1209)] src/simpleooo/cpu_ooo_ext_mem.v(171): expression size 32 truncated to fit in target size 4
+[WARN (VERI-1209)] src/simpleooo/cpu_ooo_ext_mem.v(488): expression size 32 truncated to fit in target size 2
+[WARN (VERI-1209)] src/simpleooo/cpu_ooo_ext_mem.v(603): expression size 32 truncated to fit in target size 2
+[WARN (VERI-1209)] src/simpleooo/cpu_ooo_ext_mem.v(667): expression size 32 truncated to fit in target size 2
+[WARN (VERI-1209)] src/simpleooo/cpu_ooo_ext_mem.v(696): expression size 32 truncated to fit in target size 2
+[INFO (VERI-1018)] ./src/simpleooo/two_copy_top_ct_cache_r.v(19): compiling module 'top'
+[WARN (VERI-1330)] ./src/simpleooo/two_copy_top_ct_cache_r.v(69): actual bit length 32 differs from formal bit length 1 for port 'clk'
+[WARN (VERI-8028)] ./src/simpleooo/two_copy_top_ct_cache_r.v(68): missing/open ports on instance copy1 of module cpu_ooo_ext_mem
+[WARN (VERI-1330)] ./src/simpleooo/two_copy_top_ct_cache_r.v(79): actual bit length 32 differs from formal bit length 1 for port 'clk'
+[WARN (VERI-8028)] ./src/simpleooo/two_copy_top_ct_cache_r.v(78): missing/open ports on instance copy2 of module cpu_ooo_ext_mem
+[INFO (VERI-8005)] ./src/simpleooo/two_copy_top_ct_cache_r.v(34): Unintentional sequential element inferred for stall_1 read before write using blocking assignment
+[INFO (VERI-8005)] ./src/simpleooo/two_copy_top_ct_cache_r.v(34): Unintentional sequential element inferred for stall_2 read before write using blocking assignment
+[INFO (VERI-8005)] ./src/simpleooo/two_copy_top_ct_cache_r.v(34): Unintentional sequential element inferred for invalid_program read before write using blocking assignment
+INFO (INL208): Elaboration synthesis summary:
+  Number of synthesized netlists          7 (0 packages)
+  Single run mode                         On
+  Pipeline                                On (7 pipelined netlists)
+  Late hierarchical reference connection  On
+  Number of analyzed Verilog modules      7 (7 synthesized)
+  Number of analyzed VHDL entities        0 (0 synthesized)
+  Advanced Incremental run mode           Off
+INFO (INL003): Clearing all state information (assumes, stopats, and so forth).
+top
+[<embedded>] % clock clk
+[<embedded>] % reset rst -non_resettable_regs 0
+WARNING (WRS016): The effects of "reset" options (such as "-non_resettable_regs", "-abstract_value") might not be reflected in the trace prefix.
+    For message help, type "help -message WRS016".
+INFO (IPM031): Clearing proof results of all properties.
+INFO (IRS006): Current reset condition is "rst".
+[<embedded>] % 
+[<embedded>] % # Same program
+[<embedded>] % abstract -init_value {copy1.memi_instance.array}
+[<embedded>] % abstract -init_value {copy2.memi_instance.array}
+[<embedded>] % assume {copy1.memi_instance.array == copy2.memi_instance.array}
+INFO (IPM005): The name "<embedded>::assume:0" is assigned to assumption "copy1.memi_instance.array == copy2.memi_instance.array".
+assume:0
+[<embedded>] % 
+[<embedded>] % # CT contract
+[<embedded>] % assume {invalid_program==0}
+WARNING (WNL023): Expression sizes mismatch.
+INFO (IPM005): The name "<embedded>::assume:1" is assigned to assumption "invalid_program==0".
+assume:1
+[<embedded>] % 
+[<embedded>] % # Abstract cache memory: public same, secret (mem[1]) can differ
+[<embedded>] % abstract -init_value {cache_1.mem}
+[<embedded>] % abstract -init_value {cache_2.mem}
+[<embedded>] % assume {init -> cache_1.mem[0] == cache_2.mem[0]}
+INFO (IPM005): The name "<embedded>::assume:2" is assigned to assumption "init -> cache_1.mem[0] == cache_2.mem[0]".
+assume:2
+[<embedded>] % assume {init -> cache_1.mem[2] == cache_2.mem[2]}
+INFO (IPM005): The name "<embedded>::assume:3" is assigned to assumption "init -> cache_1.mem[2] == cache_2.mem[2]".
+assume:3
+[<embedded>] % assume {init -> cache_1.mem[3] == cache_2.mem[3]}
+INFO (IPM005): The name "<embedded>::assume:4" is assigned to assumption "init -> cache_1.mem[3] == cache_2.mem[3]".
+assume:4
+[<embedded>] % 
+[<embedded>] % # Abstract cache tag (same initial state)
+[<embedded>] % abstract -init_value {cache_1.cached_addr}
+[<embedded>] % abstract -init_value {cache_2.cached_addr}
+[<embedded>] % assume {init -> cache_1.cached_addr == cache_2.cached_addr}
+INFO (IPM005): The name "<embedded>::assume:5" is assigned to assumption "init -> cache_1.cached_addr == cache_2.cached_addr".
+assume:5
+[<embedded>] % 
+[<embedded>] % # Security property
+[<embedded>] % assert {!((commit_deviation || addr_deviation) && finish_1 && finish_2 && !stall_1 && !stall_2)}
+INFO (IPM004): The name "property:0" is assigned to assertion "!((commit_deviation || addr_deviation) && finish_1 && finish_2 && !stall_1 && !stall_2)".
+property:0
+[<embedded>] % 
+[<embedded>] % # Prove (Ht to find counterexample)
+[<embedded>] % set_prove_orchestration off
+[<embedded>] % set_engine_mode {Ht}
+[<embedded>] % set_prove_time_limit 7d
+[<embedded>] % 
+[<embedded>] % prove -all
+INFO (IPF036): Starting proof on task: "<embedded>", 1 properties to prove with 0 already proven/unreachable
+INFO (IRS003): Setting non-resettable flop to value 0 during reset analysis.
+INFO (IRS029): Starting reset analysis: phase 1 of 4.
+INFO (IRS030): Running reset analysis: phase 2 of 4.
+INFO (IRS031): Running reset analysis: phase 3 of 4.
+INFO (IRS020): Starting the reset analysis simulation with a limit of 100 iterations (phase 4 of 4).
+INFO (ISIM006): Running simulation: {mode = single, probe = all}.
+INFO (IRS024): Reset iterations 0 to 4 analyzed.
+INFO (ISIM008): Simulation is processing trace data. Total number of nets in analysis 4099.
+INFO (IRS018): Reset analysis simulation executed for 3 iterations. Assigned values for 959 of 959 design flops, 0 of 0 design latches, 0 of 0 internal elements.
+INFO (IRS039): Reset analysis complete.
+INFO (IPF031): Settings used for proof thread 0:
+    orchestration                      = off
+    time_limit                         = 604800s
+    per_property_time_limit            = 1s * 10 ^ scan
+    engine_mode                        = Ht 
+    proofgrid_per_engine_max_jobs      = 1
+    max engine jobs                    = Ht, total 1
+    proofgrid_mode                     = local
+    proofgrid_restarts                 = 10
+0: Using multistage preprocessing
+0: Starting reduce
+0: Finished reduce in 0.007s
+0.0.PRE: Performing Proof Simplification...
+0.0.Ht: clocks: 3, declared: 1, looping: 0, posedge: 3, negedge: 0, noedge: 0, bothedge: 0
+0.0.Ht: Proof Simplification Iteration 1	[0.00 s]
+0.0.Ht: Proof Simplification Iteration 2	[0.00 s]
+0.0.Ht: Proof Simplification Iteration 3	[0.01 s]
+0.0.Ht: Proof Simplification Iteration 4	[0.01 s]
+0.0.Ht: Proof Simplification Iteration 5	[0.01 s]
+0.0.PRE: Proof Simplification completed in 0.03 s
+0: About to start ProofGrid in its own thread with a limit of 10000 pending notifications and a limit of 10 traces.
+0: =============================== ProofGrid start ===============================
+0: ProofGrid usable level: 1
+0: Initial ProofGrid level: 1
+0: Computed task hash in 0.00ss
+0: ProofGrid is starting event handling
+0.0.Ht: Proofgrid shell started at 3305586@everest3.comp.nus.edu.sg(local) jg_3305515_everest3.comp.nus.edu.sg_1
+0.0.Ht: clocks: 1, declared: 1, looping: 0, posedge: 1, negedge: 0, noedge: 0, bothedge: 0
+0.0.Ht: Trace Attempt  1	[0.01 s]
+0.0.Ht: Trace Attempt  2	[0.01 s]
+0.0.Ht: Trace Attempt  3	[0.01 s]
+0.0.Ht: Trace Attempt  4	[0.01 s]
+0.0.Ht: Trace Attempt  5	[0.01 s]
+0.0.Ht: Trace Attempt 14	[4.44 s]
+0.0.Ht: Trace Attempt 15	[10.97 s]
+0.0.Ht: Trace Attempt 16	[34.10 s]
+0.0.Ht: Requesting engine job to terminate
+0.0.Ht: A trace with 16 cycles was found. [60.44 s]
+INFO (IPF055): 0.0.Ht: A counterexample (cex) with 16 cycles was found for the property "property:0" in 60.55 s.
+INFO (IPF144): 0: Initiating shutdown of proof [60.44 s]
+0.0.Ht: All properties determined. [60.44 s]
+0.0.Ht: Exited with Success (@ 60.45 s)
+0: ProofGrid usable level: 0
+0: --------------------------------------------------------------
+ProofGrid Summary (utilization 99.90 %)
+--------------------------------------------------------------
+     engines started                               :     1
+     engine jobs started                           :     1
+
+    Average time in state (seconds)
+    ------------------------------------------------------
+    Engine  Pending     Running        Dead    Utilization
+    ------------------------------------------------------
+     Ht        0.06       60.44        0.00       99.90 %
+    all        0.06       60.44        0.00       99.90 %
+
+    Total time in state (seconds)
+    -----------------------------------------
+            Pending     Running        Dead  
+    -----------------------------------------
+               0.06       60.44        0.00
+
+    Data read    : 20.17 kiB
+    Data written : 288.00 B
+
+INFO (IPF180): 0: ProofGrid utilization: 99.90% slot-seconds: 60.44
+0: All pending notifications were processed.
+INFO (IPF059): 0: Completed proof on task: "<embedded>"
+
+==============================================================
+SUMMARY
+==============================================================
+           Properties Considered              : 1
+                 assertions                   : 1
+                  - proven                    : 0 (0%)
+                  - bounded_proven (user)     : 0 (0%)
+                  - bounded_proven (auto)     : 0 (0%)
+                  - marked_proven             : 0 (0%)
+                  - cex                       : 1 (100%)
+                  - ar_cex                    : 0 (0%)
+                  - undetermined              : 0 (0%)
+                  - unknown                   : 0 (0%)
+                  - error                     : 0 (0%)
+                 covers                       : 0
+                  - unreachable               : 0
+                  - bounded_unreachable (user): 0
+                  - covered                   : 0
+                  - ar_covered                : 0
+                  - undetermined              : 0
+                  - unknown                   : 0
+                  - error                     : 0
+cex
+[<embedded>] % save -jdb results/my_jdb_nofwd_ct_obsv0_cache_r -capture_setup -capture_session_data -force
+WARNING (WCD017): The switch "-jdb" has been deprecated.
+INFO (IHT027): Saving to file "/home/zhenyu.lei/ShadowLogicArtifact/results/my_proj_nofwd_ct_obsv0_cache_r/work/saveRestore/hunt/hunt.cfg".
+/home/zhenyu.lei/ShadowLogicArtifact/results/my_jdb_nofwd_ct_obsv0_cache_r
+[<embedded>] % get_design_info
+Statistics [for instance "top"]
+--------------------------
+# Flops:         229 (959) (0 property flop bits)
+# Latches:       0 (0)
+# Gates:         2001 (14532)
+# Nets:          2363
+# Ports:         2
+# RTL Lines:     1981
+# RTL Instances: 13
+# Embedded Assumptions: 0
+# Embedded Assertions:  0
+# Embedded Covers:      0
+959
+[<embedded>] % exit
+INFO (IPL005): Received request to exit from the console.
+INFO (IPL014): Waiting for the Tcl-thread to exit.
+INFO: Waiting for proof threads to stop...
+INFO: Proof threads stopped.
+INFO (IPL018): The peak resident set memory use for this session was 0.503 GB.
+INFO (IPL015): The Tcl-thread exited with status 0.
+INFO (IPL016): Exiting the analysis session with status 0.

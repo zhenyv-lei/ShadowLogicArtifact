@@ -104,14 +104,20 @@ cpu_ooo_ext_mem copy1(
     .clk(stall_1 ? 0 : clk),
     .rst(rst),
     .dmem_resp_data(rdata_1),
-    .dmem_resp_delayed(delayed_1)
+    .dmem_resp_delayed(delayed_1),
+    .dmem_wr_valid(),
+    .dmem_wr_addr(),
+    .dmem_wr_data()
 );
 
 cpu_ooo_ext_mem copy2(
     .clk(stall_2 ? 0 : clk),
     .rst(rst),
     .dmem_resp_data(rdata_2),
-    .dmem_resp_delayed(delayed_2)
+    .dmem_resp_delayed(delayed_2),
+    .dmem_wr_valid(),
+    .dmem_wr_addr(),
+    .dmem_wr_data()
 );
 
 // =========================================================================
